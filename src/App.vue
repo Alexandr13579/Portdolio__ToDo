@@ -1,30 +1,62 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <div class="app">
+    <div class="black"></div>
+    <div class="container">
+        <FormTask @newTask = addNewTask1></FormTask>
+        <ListTasks :tasks="tasks"></ListTasks>
+    </div>
+  </div>
 </template>
 
-<style>
+<script>
+import FormTask from '@/components/FormTask.vue'; 
+import ListTasks from '@/components/ListTasks.vue'
+  export default {
+      data() {
+        return {
+            tasks: [
+
+            ]
+        }
+      },
+      methods: {
+        addNewTask1(task) {
+          this.tasks.push(task)
+        }
+      },
+      components: {
+        FormTask, ListTasks
+      }
+  }
+</script>
+
+<style lang="scss">
+@import "@/assert/reset.css";
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  width: 100%;
+  height: 100%;
+  background-color: #1A1A1A;
+  font-family:Arial, Helvetica, sans-serif;
+  position: relative;
 }
 
-nav {
-  padding: 30px;
+.black{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #0D0D0D;
+  width: 100%;
+  height: 75px;
 }
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
+.container{
+  position: relative;
+  z-index: 2;
+  width: 50%;
+  margin: auto;
+  padding-top: 50px;
 }
 
-nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>
