@@ -1,20 +1,23 @@
-<template lang="">
-    <div>
-        <p>total tasks: <span :tasks.length="length">{{ tasks.length }}</span></p>
-
+<template>
+    <div class="wrapper">
+        <div class="totals__tasks">
+            <p>Total tasks: <span :tasks.length="length">{{ tasks.length }}</span></p>
+            <p>Completed: <span :tasks.length="length">{{ tasks.length }} of</span></p>
+        </div>
+        <ul class="list" >
+            <ListTask 
+            v-for="task in tasks" 
+            :key="task.id" 
+            :task="task"
+            @remove="$emit('remove', task)">
+            </ListTask>
+        </ul>
     </div>
-    <ul class="list">
-        <li 
-        v-for="task in tasks"
-        :key="task.id"
-        class="list__item">
-            <input type="checkbox">
-            <p>{{ task.title }}</p>
-            <button class="list__btn"><img src="../assert/trash.svg" alt="delete"></button>
-        </li>
-    </ul>
 </template>
+
 <script>
+import ListTask from '@/components/ListTask.vue';
+
 export default {
     props: {
         tasks: {
@@ -24,27 +27,41 @@ export default {
     },
     data() {
         return {
+        
         }
-    }
+    },
+    components: {
+        ListTask
+    },
+
 }
 </script>
 <style lang="scss">
-    ul {
-        margin-top: 60px;
-    }
-
-    li {
+    .totals__tasks{
         display: flex;
         justify-content: space-between;
-        width: 100%;
-        gap: 15px;
-    }
 
-    input{
-        
-    }
+        p{
+            color: #4EA8DE;
 
-    p{
-        flex-grow: 1;
+            span{
+                margin-left: 8px;
+                display: inline-block;
+                padding: 2px 8px;
+                background-color: #333333;
+                border-radius: 50%;
+                color: #D9D9D9;
+            }
+        }
     }
+    .wrapper {
+        margin-top: 60px;
+    }
+    ul {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 25px;
+    }
+    
 </style>

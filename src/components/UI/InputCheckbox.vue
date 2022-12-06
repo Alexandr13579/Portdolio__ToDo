@@ -1,0 +1,57 @@
+<template >
+    <input type="checkbox" :checked="modelValue" @input="updateInput"  />
+</template>
+<script>
+export default {
+    name: 'input-checkbox',
+    props: {
+            modelValue: [Boolean]
+        },
+        methods: {
+            updateInput(event) {
+                this.$emit('update:modelValue', event.target.checked)
+            }
+        }
+}
+</script>
+<style lang="scss">
+    
+    $inputBorder: #4EA8DE;
+    $black: #363839;
+    $gray: #bdc1c6;
+    $white: #F2F2F2;
+    $green: #06842c;
+
+input[type="checkbox"] {
+        position: relative;
+        width: 1.5em;
+        height: 1.5em;
+        border: 1px solid $inputBorder;
+        border-radius: 50%;
+        appearance: none;
+        outline: 0;
+        cursor: pointer;
+        transition: background 175ms cubic-bezier(0.1, 0.1, 0.25, 1);
+    &::before {
+        position: absolute;
+        content: '';
+        display: block;
+        top: 3px;
+        left: 6.5px;
+        width: 6px;
+        height: 10px;
+        border-style: solid;
+        border-color: $white;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+        opacity: 0;
+    }
+    &:checked {
+        color: $white;
+        background: #4EA8DE;
+        &::before {
+        opacity: 1;
+        }
+    }
+}
+</style>

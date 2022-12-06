@@ -11,7 +11,7 @@ export default {
         return {
             task: {
                 title: '',
-                done: false,
+                complite: false,
             }
         }
     }, 
@@ -19,10 +19,11 @@ export default {
         addNewTask() {
             if (this.task.title) {
                 this.task.id = Date.now();
-                this.$emit('newTask', this.task);
+                this.$emit('create', this.task);
                 this.task = {
                     title: '',
                     id: '',
+                    complite: false
                 }
             }
         }

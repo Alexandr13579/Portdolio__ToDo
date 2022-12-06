@@ -2,8 +2,9 @@
   <div class="app">
     <div class="black"></div>
     <div class="container">
-        <FormTask @newTask = addNewTask1></FormTask>
-        <ListTasks :tasks="tasks"></ListTasks>
+        <FormTask @create = addNewTask></FormTask>
+        
+        <ListTasks @remove="removeTask" :tasks="tasks"></ListTasks>
     </div>
   </div>
 </template>
@@ -15,18 +16,36 @@ import ListTasks from '@/components/ListTasks.vue'
       data() {
         return {
             tasks: [
-
-            ]
+                
+            ],
         }
       },
       methods: {
-        addNewTask1(task) {
+        addNewTask(task) {
           this.tasks.push(task)
-        }
+          this.localStorageSave();
+        },
+        removeTask(task) {
+          this.tasks = this.tasks.filter(t => t.id !== task.id);
+          this.localStorageSave()
+        },
+        localStorageSave() {
+            let taskss = JSON.stringify(this.tasks)
+            localStorage.setItem('tasks', taskss)
+        },
       },
       components: {
         FormTask, ListTasks
-      }
+      },
+      mounted() {
+        if (localStorage.getItem('tasks')) {
+          try {
+            this.tasks = JSON.parse(localStorage.getItem('tasks'));
+          } catch(e) {
+            localStorage.removeItem('tasks');
+          }
+        }
+      },
   }
 </script>
 
