@@ -33,7 +33,7 @@ export default {
 
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
     ul {
         display: flex;
         flex-direction: column;
