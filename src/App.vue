@@ -3,21 +3,26 @@
     <div class="black"></div>
     <div class="container">
         <FormTask @create = addNewTask></FormTask>
-        
-        <ListTasks @remove="removeTask" :tasks="tasks"></ListTasks>
+        <div class="list__tasks">
+          <TotalTasks :tasks="tasks" :complitedTasks="complitedTasks" />
+          <ListTasks  @checked="sizeComplited" @remove="removeTask" :tasks="tasks"></ListTasks>
+        </div>
     </div>
   </div>
 </template>
 
 <script>
 import FormTask from '@/components/FormTask.vue'; 
-import ListTasks from '@/components/ListTasks.vue'
+import ListTasks from '@/components/ListTasks.vue';
+import TotalTasks from '@/components/TotalTasks.vue';
+
   export default {
       data() {
         return {
             tasks: [
                 
             ],
+            complitedTasks: 0
         }
       },
       methods: {
@@ -27,20 +32,25 @@ import ListTasks from '@/components/ListTasks.vue'
         },
         removeTask(task) {
           this.tasks = this.tasks.filter(t => t.id !== task.id);
-          this.localStorageSave()
+          this.localStorageSave();
+          this.sizeComplited();
         },
         localStorageSave() {
-            let taskss = JSON.stringify(this.tasks)
-            localStorage.setItem('tasks', taskss)
+            let taskss = JSON.stringify(this.tasks);
+            localStorage.setItem('tasks', taskss);
         },
+        sizeComplited() {
+            this.complitedTasks = (this.tasks.filter(item => {return item.complited === true})).length;
+        }
       },
       components: {
-        FormTask, ListTasks
+        FormTask, ListTasks, TotalTasks
       },
       mounted() {
         if (localStorage.getItem('tasks')) {
           try {
             this.tasks = JSON.parse(localStorage.getItem('tasks'));
+            this.complitedTasks = (this.tasks.filter(item => {return item.complited === true})).length
           } catch(e) {
             localStorage.removeItem('tasks');
           }
@@ -76,6 +86,10 @@ import ListTasks from '@/components/ListTasks.vue'
   width: 50%;
   margin: auto;
   padding-top: 50px;
+}
+
+.list__tasks{
+  margin-top: 60px;
 }
 
 </style>

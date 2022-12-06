@@ -1,6 +1,6 @@
-<template lang="">
+<template>
     <li 
-    @click="task.complited = !task.complited"
+    @click="task.complited = !task.complited, $emit('checked', task)"
     :class="task.complited ? 'complitedLi' : '' "
     class="list__item">
         <input-checkbox v-model="task.complited" />
