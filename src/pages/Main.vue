@@ -1,20 +1,16 @@
 <template lang="">
-    <div class="black"></div>
-      <div class="container">
-        <HeaderVue />
-          <main>
-            
-          </main>
-      </div>
+    <MyHeaderVue />
+    <main>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum reprehenderit provident, voluptatibus voluptatem beatae tenetur qui porro odit, laboriosam sapiente perspiciatis soluta. Ducimus perspiciatis velit dicta nobis, quo debitis iure!</main>
+    <footer></footer>
 </template>
 <script>
-import HeaderVue from '@/components/Header.vue';
+import MyHeaderVue from '@/components/My-Header.vue';
 export default {
     components: {
-        HeaderVue
+        MyHeaderVue
     }
 }
 </script>
-<style lang="">
+<style lang="scss" scoped>
     
 </style>

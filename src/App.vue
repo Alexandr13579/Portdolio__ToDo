@@ -1,8 +1,6 @@
 <template>
   <div class="app">
-    <div class="container">
       <router-view></router-view>
-    </div>
   </div>
 </template>
 
@@ -18,15 +16,15 @@
   height: 100%;
   background-color: #1A1A1A;
   font-family:Arial, Helvetica, sans-serif;
-  position: relative;
   box-sizing: border-box;
+  // overflow: hidden;
 }
 
 .container{
   position: relative;
   z-index: 2;
-  width: 50%;
-  margin: auto;
+  width: 70%;
+  margin: 0 auto;
 }
 
 </style>

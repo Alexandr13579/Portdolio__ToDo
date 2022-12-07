@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import ListTask from '@/components/ListTask.vue';
+import ListTask from '@/components/ToDo/ListTask.vue';
 
 export default {
     props: {

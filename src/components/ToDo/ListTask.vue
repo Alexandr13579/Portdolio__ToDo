@@ -5,7 +5,7 @@
     class="list__item">
         <input-checkbox v-model="task.complited" />
         <p :class="task.complited ? 'complited' : '' ">{{ task.title }}</p>
-        <button @click="$emit('remove', task)" class="list__btn"><img src="../assert/trash.svg" alt="delete"></button>
+        <button @click="$emit('remove', task)" class="list__btn"><img src="../../assert/todo/trash.svg" alt="delete"></button>
     </li>
 </template>
 
@@ -58,7 +58,7 @@ export default {
 
             &:hover {
                 img {
-                    content: url("../assert/trash__hover.svg");
+                    content: url("../../assert/todo/trash__hover.svg");
                 }
             }
         }
