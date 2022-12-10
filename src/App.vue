@@ -1,10 +1,12 @@
 <template>
   <div class="app">
+      
       <router-view></router-view>
   </div>
 </template>
 
 <script>
+import my_header from '@/components/My-Header.vue'
 
 </script>
 

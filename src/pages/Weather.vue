@@ -1,73 +1,84 @@
 <template>
-    <MyHeaderVue />
     <main>
         <div class="container">
-            <section class="query">
-                <form>
-                    <input 
-                    placeholder="Enter your desired city"
-                    type="text"
-                    />
-                </form>
-            </section>
-            <section class="info">
-                <div class="info__city">Kazan</div>
-                <div class="info__date">22 June 2020</div>
+            <WeatherQuery @GetLocationData="GetLocationData"/>
+            <div v-if="(typeof weather.name != 'undefined')">
+                <section class="info">
+                <div class="info__city">{{ weather.name, weather.sys.country}}</div>
+                <div class="info__date">{{ dateBuilder() }}</div>
             </section>
             <section class="weather">
-                <div class="weather__temp">22 c</div>
-                <div class="weather__weather">Snow</div>
+                <div class="weather__temp">{{ Math.round(weather.main.temp) }}℃</div>
+                <div class="weather__weather">{{ weather.weather[0].main }}</div>
             </section>
+            </div>
+            <div v-else> Lorem</div>
         </div>
     </main>
 </template>
 
 <script>
-import MyHeaderVue from '@/components/My-Header.vue';
+import WeatherQuery from '@/components/Weather/WeatherQuery.vue'
 
 export default {
+    data() {
+        return {
+            
+            API__LOCATION: 'http://api.openweathermap.org/geo/1.0/direct?',
+            API__WEATHER: 'https://api.openweathermap.org/data/3.0/onecall?',
+            API__KEY: '2def5dc0742efcf2ebc84923f64167b0',
+            weather: {},
+            locationLanLon: '',
+        }
+    },
+    methods: {
+        GetLocationData(queryCity) {
+            fetch(`${this.API__LOCATION}q=${queryCity}&appid=${this.API__KEY}`)
+            .then((response) => {
+                return response.json();
+            }).then(this.GetLocation);
+        },
+        GetLocation (data) {
+            this.locationLanLon = data;
+            this.locationLanLon = `lat=${this.locationLanLon[0].lat}&lon=${this.locationLanLon[0].lon}`;
+            this.GetWeatherData();
+            console.log(this.locationLanLon)
+        },
+        GetWeatherData() {
+            fetch(`https://api.openweathermap.org/data/2.5/weather?${this.locationLanLon}&units=metric&appid=${this.API__KEY}`)
+            .then((response) => {
+                return response.json();
+            }).then(this.GetWeather);
+        },
+        GetWeather(result) {
+            this.weather = result;
+            console.log(this.weather)
+            
+        },
+        dateBuilder () {
+            let d = new Date();
+            let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+            let day = days[d.getDay()];
+            let date = d.getDate();
+            let month = months[d.getMonth()];
+            let year = d.getFullYear();
+            
+            return `${day} ${date} ${month} ${year}`;
+                }
+            },
     components: {
-        MyHeaderVue
-    }
+        WeatherQuery
+    },
 }
 </script>
     
 <style lang="scss" scoped>
     main {
-        background-image: url('../assert/weather/snow.jpg');
-        background-repeat: no-repeat;
-        background-size: cover;
-        width: 100%;
-        height: 100vh;
-    }
-
-    form{
-        width: 100%;
-    }
-
-    input{
+        text-align: center;
         color: rgb(197, 194, 194);
-        width: 100%;
-        margin-top: 25px;
-        appearance: none;
-        border:none;
-        background: none;
-        background-color: rgba(255, 255, 255, 0.25);
-        font-size: 25px;
-        padding: 10px;
-        border-radius: 0px 16px 0px 16px;
-        text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
-        transition: all ease .3s;
 
-        &::placeholder{
-            color: rgb(197, 194, 194);
-        }
-
-        &:focus {
-            border-radius: 16px 0px 16px 0px;
-            text-shadow: 0px 0px 16px rgba(0, 0, 0, 0.45);
-
-        }
     }
 
     .info{
@@ -95,6 +106,21 @@ export default {
 
 
     .weather{
-        margin-top: 25px;
+        margin-top: 50px;
+
+        &__temp {
+                display: inline-block;
+                font-size: 120px;
+                font-weight: 500;
+                background-color: rgba(255, 255, 255, 0.1);
+                padding: 50px 30px;
+                border-radius: 15px;                
+            
+        }
+
+        &__weather{
+            font-size: 70px;
+            margin-top: 10px;
+        }
     }
 </style>

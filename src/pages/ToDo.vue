@@ -1,5 +1,4 @@
 <template>
-    <MyHeaderVue />
     <main>
       <div class="black"></div>
       <div class="container">
@@ -18,7 +17,6 @@
 import FormTask from '@/components/ToDo/FormTask.vue';
 import ListTasks from '@/components/ToDo/ListTasks.vue';
 import TotalTasks from '@/components/ToDo/TotalTasks.vue';
-import MyHeaderVue from '@/components/My-Header.vue';
   
 export default {
     data() {
