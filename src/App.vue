@@ -1,25 +1,30 @@
 <template>
   <div class="app">
-      
+      <myHeader />
       <router-view></router-view>
   </div>
 </template>
 
 <script>
-import my_header from '@/components/My-Header.vue'
-
+import myHeader from '@/components/My-Header.vue'
+    
+  export default {
+    components: {
+      myHeader
+    }
+  }
 </script>
 
 <style lang="scss">
 @import "@/assert/reset.css";
 
-#app {
-  width: 100%;
-  height: 100%;
+.app {
+  width: 100vw;
+  height: 100vh;
   background-color: #1A1A1A;
   font-family:Arial, Helvetica, sans-serif;
   box-sizing: border-box;
-  // overflow: hidden;
+  display: flex;
 }
 
 .container{

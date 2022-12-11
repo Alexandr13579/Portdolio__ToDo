@@ -47,7 +47,7 @@ export default {
       }
     },
     components: {
-      FormTask, ListTasks, TotalTasks, MyHeaderVue
+      FormTask, ListTasks, TotalTasks, 
     },
     mounted() {
       if (localStorage.getItem('tasks')) {
