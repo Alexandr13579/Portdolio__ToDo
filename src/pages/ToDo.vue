@@ -63,11 +63,18 @@ export default {
 </script>
   
 <style lang="scss" scoped>
-    .wrapper__todo{
+main{
+  margin: 0 auto;
+}
+.wrapper__todo{
       padding-top: 45px;
+      width: 100%;
+      margin: 0 auto;
     }
     .list__tasks{
     margin-top: 60px;
+    width: 100%;
+
     }
 
     .black{

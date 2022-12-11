@@ -19,7 +19,6 @@ import myHeader from '@/components/My-Header.vue'
 @import "@/assert/reset.css";
 
 .app {
-  width: 100vw;
   height: 100vh;
   background-color: #1A1A1A;
   font-family:Arial, Helvetica, sans-serif;
@@ -27,11 +26,15 @@ import myHeader from '@/components/My-Header.vue'
   display: flex;
 }
 
+main{
+  margin-left: 64px;
+}
+
 .container{
   position: relative;
   z-index: 2;
-  width: 70%;
-  margin: 0 auto;
+  // width: 100%;
+  // margin: 0 auto;
 }
 
 </style>

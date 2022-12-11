@@ -1,6 +1,7 @@
 <template>
     <main>
         <div class="container">
+            <h2 class="title">World Weather</h2>
             <WeatherQuery @GetLocationData="GetLocationData"/>
             <div v-if="(typeof weather.name != 'undefined')">
                 <section class="info">
@@ -12,7 +13,6 @@
                 <div class="weather__weather">{{ weather.weather[0].main }}</div>
             </section>
             </div>
-            <div v-else> Lorem</div>
         </div>
     </main>
 </template>
@@ -77,10 +77,16 @@ export default {
 <style lang="scss" scoped>
     main {
         text-align: center;
-        color: rgb(197, 194, 194);
-
+        color: #394C60;
+        background-color: #CFD1E0;
+        width: 100%;
+        
     }
 
+    .title{
+        font-size: 40px;
+        margin-top: 20px;
+    }
     .info{
         margin-top: 40px;
         display: flex;
@@ -88,7 +94,6 @@ export default {
         justify-content: center;
         align-items: center;
         gap: 10px;
-        color: rgba(255, 255, 255, 0.741);
 
 
         &__city {
@@ -112,7 +117,7 @@ export default {
                 display: inline-block;
                 font-size: 120px;
                 font-weight: 500;
-                background-color: rgba(255, 255, 255, 0.1);
+                background-color: rgba(255, 255, 255, 0.7);
                 padding: 50px 30px;
                 border-radius: 15px;                
             

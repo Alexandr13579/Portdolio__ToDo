@@ -29,15 +29,15 @@ export default {
         appearance: none;
         border:none;
         background: none;
-        background-color: rgba(255, 255, 255, 0.25);
+        background-color: rgba(255, 255, 255, 0.7);
         font-size: 25px;
         padding: 10px;
         border-radius: 0px 16px 0px 16px;
         text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
         transition: all ease .3s;
-
+        color: #394C60;
         &::placeholder{
-            color: rgb(197, 194, 194);
+            color: #394C60;
         }
 
         &:focus {
