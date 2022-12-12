@@ -130,7 +130,7 @@ export default {
                 display: flex;
                 align-items: center;
                 cursor: pointer;
-
+                
                 &:hover{
                     .material-symbols-outlined, .text{
                         color: #A38970;
@@ -175,4 +175,11 @@ export default {
         }
         }
     }
+    a.router-link-active{
+       a{
+        .material-symbols-outlined, .text{
+                        color: #A38970;
+        }
+       }
+}
 </style>

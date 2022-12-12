@@ -64,11 +64,13 @@ export default {
   
 <style lang="scss" scoped>
 main{
-  margin: 0 auto;
+  width: 100%;
+  padding: 0px 10px;
 }
 .wrapper__todo{
       padding-top: 45px;
       width: 100%;
+      max-width: 600px;
       margin: 0 auto;
     }
     .list__tasks{

@@ -2,16 +2,23 @@
     <main>
         <div class="container">
             <h2 class="title">World Weather</h2>
-            <WeatherQuery @GetLocationData="GetLocationData"/>
-            <div v-if="(typeof weather.name != 'undefined')">
-                <section class="info">
-                <div class="info__city">{{ weather.name, weather.sys.country}}</div>
-                <div class="info__date">{{ dateBuilder() }}</div>
-            </section>
-            <section class="weather">
-                <div class="weather__temp">{{ Math.round(weather.main.temp) }}℃</div>
-                <div class="weather__weather">{{ weather.weather[0].main }}</div>
-            </section>
+            <WeatherQuery 
+            @GetLocationData="GetLocationData" />
+            <div class="pos__relativ">
+                <transition class="pos__absolute" name="list1">
+                    <WeatherNoInfo 
+                    class="pos__absolute"
+                    v-if="(weather.name == undefined)" 
+                    />
+                </transition>
+                <transition class="pos__absolute" name="list1">
+                    <WeatherInfo 
+                        class="pos__absolute"
+                        v-if="(weather.name)"
+                        :weather="weather"
+                        :dateBuilder="dateBuilder"
+                        />
+                </transition>
             </div>
         </div>
     </main>
@@ -19,16 +26,23 @@
 
 <script>
 import WeatherQuery from '@/components/Weather/WeatherQuery.vue'
+import WeatherNoInfo from '@/components/Weather/WeatherNoInfo.vue'
+import WeatherInfo from '@/components/Weather/WeatherInfo.vue'
+import BuildDateNow from '@/components/Weather/BuildDateNow.vue'
 
 export default {
     data() {
         return {
-            
             API__LOCATION: 'http://api.openweathermap.org/geo/1.0/direct?',
             API__WEATHER: 'https://api.openweathermap.org/data/3.0/onecall?',
             API__KEY: '2def5dc0742efcf2ebc84923f64167b0',
             weather: {},
             locationLanLon: '',
+        }
+    },
+    mounted() {
+        if (localStorage.getItem('weather')) {
+            this.weather = JSON.parse(localStorage.getItem('weather'));
         }
     },
     methods: {
@@ -39,10 +53,9 @@ export default {
             }).then(this.GetLocation);
         },
         GetLocation (data) {
-            this.locationLanLon = data;
-            this.locationLanLon = `lat=${this.locationLanLon[0].lat}&lon=${this.locationLanLon[0].lon}`;
+            let location = data
+            this.locationLanLon = `lat=${location[0].lat}&lon=${location[0].lon}`;
             this.GetWeatherData();
-            console.log(this.locationLanLon)
         },
         GetWeatherData() {
             fetch(`https://api.openweathermap.org/data/2.5/weather?${this.locationLanLon}&units=metric&appid=${this.API__KEY}`)
@@ -52,8 +65,8 @@ export default {
         },
         GetWeather(result) {
             this.weather = result;
-            console.log(this.weather)
-            
+            const weatheer = JSON.stringify(this.weather);
+            localStorage.setItem('weather', weatheer);
         },
         dateBuilder () {
             let d = new Date();
@@ -69,63 +82,55 @@ export default {
                 }
             },
     components: {
-        WeatherQuery
+        WeatherQuery, WeatherNoInfo, WeatherInfo,BuildDateNow
     },
 }
 </script>
     
-<style lang="scss" scoped>
+<style lang="scss">
+
+    .Pos__relativ{
+        position: relative;
+
+        .pos__absolute{
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+    }
     main {
         text-align: center;
         color: #394C60;
         background-color: #CFD1E0;
         width: 100%;
-        
     }
 
     .title{
         font-size: 40px;
         margin-top: 20px;
     }
-    .info{
-        margin-top: 40px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
+.list1-enter-from{
+    transition: all 1s ease 0.1s; 
+    opacity: 0;
+    transform: translate(-130px);
+}
 
+.list1-enter-to{
+    transform: translate(0px);
+    opacity: 1;
+    transition: all 1s ease 0.1s; 
 
-        &__city {
-            font-size: 42px;
-            font-weight: 500px;
+}
+.list1-leave-from {
+    transition: all 1s ease 0.1s;
+    transform: translate(0px);
+}
+.list1-leave-to {
+    transition: all 1s ease 0.1s; 
+    opacity: 0;
+    transform: translateX(130px);
+}
 
-        }
-
-        &__date{
-            font-size: 32px;
-            font-weight: 400;
-            font-style: italic;
-        }
-    }
-
-
-    .weather{
-        margin-top: 50px;
-
-        &__temp {
-                display: inline-block;
-                font-size: 120px;
-                font-weight: 500;
-                background-color: rgba(255, 255, 255, 0.7);
-                padding: 50px 30px;
-                border-radius: 15px;                
-            
-        }
-
-        &__weather{
-            font-size: 70px;
-            margin-top: 10px;
-        }
-    }
 </style>

@@ -24,6 +24,7 @@ import myHeader from '@/components/My-Header.vue'
   font-family:Arial, Helvetica, sans-serif;
   box-sizing: border-box;
   display: flex;
+  overflow: hidden;
 }
 
 main{
@@ -33,8 +34,9 @@ main{
 .container{
   position: relative;
   z-index: 2;
-  // width: 100%;
-  // margin: 0 auto;
+  padding: 0px 10px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 </style>

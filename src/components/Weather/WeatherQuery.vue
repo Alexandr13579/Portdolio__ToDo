@@ -5,9 +5,9 @@
         >
             <input 
             v-model="queryCity"
-            placeholder="Enter your desired city"
+            placeholder="Enter your city"
             type="text"
-            @keyup.enter="$emit('GetLocationData', this.queryCity)"
+            @keyup.enter=" $emit('GetLocationData', this.queryCity), queryCity = '' "
             />
         </form>
     </section>
@@ -25,6 +25,7 @@ export default {
     
     input{
         width: 100%;
+        max-width: 600px;
         margin-top: 25px;
         appearance: none;
         border:none;
@@ -33,7 +34,7 @@ export default {
         font-size: 25px;
         padding: 10px;
         border-radius: 0px 16px 0px 16px;
-        text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+        text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.649);
         transition: all ease .3s;
         color: #394C60;
         &::placeholder{
