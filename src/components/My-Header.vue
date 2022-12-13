@@ -97,7 +97,6 @@ export default {
                     &:hover{
                         transform: translate(11px, 0px);
                         color: #A38970;
-
                     }
                 }
             }
@@ -107,7 +106,14 @@ export default {
             flex-direction: column;
             justify-content: center;
             padding: 5px; 
-            align-items: flex-start;          
+            align-items: flex-start;      
+            
+            a.router-link-active{
+        
+                .material-symbols-outlined, .text{
+                    color: #A38970;
+                }
+}
             .material-symbols-outlined{
                 color: #FFFFFF;
                 font-size: 28px;
@@ -175,11 +181,4 @@ export default {
         }
         }
     }
-    a.router-link-active{
-       a{
-        .material-symbols-outlined, .text{
-                        color: #A38970;
-        }
-       }
-}
 </style>

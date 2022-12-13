@@ -1,16 +1,14 @@
 <template lang="">
-    <Transition name="list">
-        <div>
-            <section class="info">
-                <div class="info__city">{{ weather.name}}</div>
-                <BuildDateNow :dateBuilder="dateBuilder"/>
-            </section>
-            <section class="weather">
-                <div class="weather__temp">{{ Math.round(weather.main.temp) }}℃</div>
-                <div class="weather__weather">{{ weather.weather[0].main }}</div>
-            </section>
-        </div>
-    </Transition>   
+    <div class="info">
+        <section class="info__inf inf">
+            <div class="inf__city">{{ weather.name}}</div>
+            <BuildDateNow :dateBuilder="dateBuilder"/>
+        </section>
+        <section class="info__weather weather">
+            <div class="weather__temp">{{ Math.round(weather.main.temp) }}℃</div>
+            <div class="weather__weather">{{ weather.weather[0].main }}</div>
+        </section>
+    </div>  
 </template>
 
 <script>
@@ -26,9 +24,16 @@ export default {
     }
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
+
 .info{
-        margin-top: 40px;
+    position: absolute;
+    top: 140px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.inf{
         display: flex;
         flex-direction: column;
         justify-content: center;

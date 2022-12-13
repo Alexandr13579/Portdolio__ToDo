@@ -5,16 +5,14 @@
             <WeatherQuery 
             @GetLocationData="GetLocationData" />
             <div class="pos__relativ">
-                <transition class="pos__absolute" name="list1">
+                <transition name="list">
                     <WeatherNoInfo 
-                    class="pos__absolute"
-                    v-if="(weather.name == undefined)" 
-                    />
-                </transition>
-                <transition class="pos__absolute" name="list1">
+                        class="pos__absolute"
+                        v-if="(weather.name == undefined)" 
+                        />
                     <WeatherInfo 
                         class="pos__absolute"
-                        v-if="(weather.name)"
+                        v-else-if="(weather.name)"
                         :weather="weather"
                         :dateBuilder="dateBuilder"
                         />
@@ -40,11 +38,11 @@ export default {
             locationLanLon: '',
         }
     },
-    mounted() {
-        if (localStorage.getItem('weather')) {
-            this.weather = JSON.parse(localStorage.getItem('weather'));
-        }
-    },
+    // mounted() {
+    //     if (localStorage.getItem('weather')) {
+    //         this.weather = JSON.parse(localStorage.getItem('weather'));
+    //     }
+    // },
     methods: {
         GetLocationData(queryCity) {
             fetch(`${this.API__LOCATION}q=${queryCity}&appid=${this.API__KEY}`)
@@ -65,8 +63,8 @@ export default {
         },
         GetWeather(result) {
             this.weather = result;
-            const weatheer = JSON.stringify(this.weather);
-            localStorage.setItem('weather', weatheer);
+            // const weatheer = JSON.stringify(this.weather);
+            // localStorage.setItem('weather', weatheer);
         },
         dateBuilder () {
             let d = new Date();
@@ -89,48 +87,25 @@ export default {
     
 <style lang="scss">
 
-    .Pos__relativ{
-        position: relative;
-
-        .pos__absolute{
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-        }
-    }
-    main {
-        text-align: center;
-        color: #394C60;
-        background-color: #CFD1E0;
-        width: 100%;
-    }
-
-    .title{
-        font-size: 40px;
-        margin-top: 20px;
-    }
-.list1-enter-from{
-    transition: all 1s ease 0.1s; 
-    opacity: 0;
-    transform: translate(-130px);
+main {
+    text-align: center;
+    color: #394C60;
+    background-color: #CFD1E0;
+    width: 100%;
+}
+.title{
+    font-size: 40px;
+    margin-top: 20px;
+}
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.3s ease-in-out;
 }
 
-.list1-enter-to{
-    transform: translate(0px);
-    opacity: 1;
-    transition: all 1s ease 0.1s; 
-
-}
-.list1-leave-from {
-    transition: all 1s ease 0.1s;
-    transform: translate(0px);
-}
-.list1-leave-to {
-    transition: all 1s ease 0.1s; 
-    opacity: 0;
-    transform: translateX(130px);
+.list-enter-from ,
+.list-leave-to {
+  transform: translateX(30px);
+  opacity: 0;
 }
 
 </style>
