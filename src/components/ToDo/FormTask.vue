@@ -1,7 +1,15 @@
 <template lang="">
     <form class="addTask" @submit.prevent>
-            <input type="text" placeholder="New Task" v-model="task.title">
-            <button @click="addNewTask">Add &#43;</button>
+            <input 
+            type="text" 
+            placeholder="New Task" 
+            v-model="task.title"
+            class="input"
+            />
+            <button 
+            @click="addNewTask"
+            class="button"
+            >Add &#43;</button>
         </form>
 </template>
 
@@ -11,7 +19,7 @@ export default {
         return {
             task: {
                 title: '',
-                complite: false,
+                complited: false,
             }
         }
     }, 
@@ -23,7 +31,7 @@ export default {
                 this.task = {
                     title: '',
                     id: '',
-                    complite: false
+                    complited: false
                 }
             }
         }
@@ -32,13 +40,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .addTask{
-  display: flex;
-  justify-content: space-between;
-  gap: 8px;
-}
+.addTask{
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
 
-input{
+    .input{
     background-color: #262626;
     border: 1px solid #0D0D0D;
     border-radius: 8px;
@@ -49,14 +56,36 @@ input{
     color: #808080;
     padding: 16px;
 
-    &:focus{
-      border: 1px solid #9747FF;
+        &:focus{
+        border: 1px solid #9747FF;
+        }
+    }
+    .button{
+        background: #4177a1;
+        border-radius: 8px;
+        font-size: 16px;
+        padding: 16px;
     }
 }
 
-button{
-  background: #1E6F9F;
-  border-radius: 8px;
-  padding: 16px;
-}
+
+@media (max-width: 420px) {
+      main{
+        .addTask{
+          gap: 4px;
+
+          .input{
+            font-size: 13px;
+            padding: 8px;
+          }
+
+          .button {
+            padding: 8px;
+            font-size: 13px;
+
+            content: '+';
+          }
+        }
+      }
+    }
 </style>

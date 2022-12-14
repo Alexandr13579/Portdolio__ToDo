@@ -181,4 +181,10 @@ export default {
         }
         }
     }
+
+    @media (max-width: 420px) {
+    // .aside{
+    //     width: 54px;
+    // }
+}
 </style>

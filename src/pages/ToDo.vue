@@ -6,7 +6,7 @@
           <FormTask @create = addNewTask></FormTask>
           <div class="list__tasks">
               <TotalTasks :tasks="tasks" :complitedTasks="complitedTasks" />
-              <ListTasks  @checked="sizeComplited" @remove="removeTask" :tasks="tasks"></ListTasks>
+              <ListTasks  @checked="sizeComplited" @remove="removeTask" :tasks="tasks" />
           </div>
         </div>
       </div>
@@ -29,7 +29,8 @@ export default {
     },
     methods: {
       addNewTask(task) {
-        this.tasks.push(task)
+        this.tasks.push(task);
+        this.sortTasksComplited();
         this.localStorageSave();
       },
       removeTask(task) {
@@ -43,7 +44,11 @@ export default {
       },
       sizeComplited() {
           this.complitedTasks = (this.tasks.filter(item => {return item.complited === true})).length;
+          this.sortTasksComplited();
           this.localStorageSave();
+      },
+      sortTasksComplited() {
+        this.tasks = this.tasks.sort((a, b) => a.complited - b.complited)
       }
     },
     components: {
@@ -62,21 +67,19 @@ export default {
 }
 </script>
   
-<style lang="scss" scoped>
-main{
-  width: 100%;
-  padding: 0px 10px;
-}
+<style lang="scss">
+
 .wrapper__todo{
       padding-top: 45px;
       width: 100%;
-      max-width: 600px;
+      max-width: 700px;
       margin: 0 auto;
+      position: relative;
+      z-index: 5;
     }
     .list__tasks{
     margin-top: 60px;
     width: 100%;
-
     }
 
     .black{
@@ -88,4 +91,26 @@ main{
       background-color: #0D0D0D;
     }
 
+    @media (max-width: 420px) {
+      main{
+
+        .totals__tasks{
+          flex-direction: column;
+          gap: 8px;
+        }
+
+        .addTask{
+          gap: 4px;
+
+          .input{
+            font-size: 13px;
+            padding: 8px;
+          }
+
+          .button {
+            padding: 8px;
+          }
+        }
+      }
+    }
 </style>

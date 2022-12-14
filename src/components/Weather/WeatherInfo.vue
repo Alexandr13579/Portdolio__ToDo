@@ -1,5 +1,5 @@
-<template lang="">
-    <div class="info">
+<template>
+        <div class="info" v-if="weather.name">
         <section class="info__inf inf">
             <div class="inf__city">{{ weather.name}}</div>
             <BuildDateNow :dateBuilder="dateBuilder"/>
@@ -24,11 +24,11 @@ export default {
     }
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 
 .info{
     position: absolute;
-    top: 140px;
+    top: 155px;
     left: 0;
     right: 0;
     bottom: 0;

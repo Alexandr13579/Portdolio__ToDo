@@ -38,11 +38,6 @@ export default {
             locationLanLon: '',
         }
     },
-    // mounted() {
-    //     if (localStorage.getItem('weather')) {
-    //         this.weather = JSON.parse(localStorage.getItem('weather'));
-    //     }
-    // },
     methods: {
         GetLocationData(queryCity) {
             fetch(`${this.API__LOCATION}q=${queryCity}&appid=${this.API__KEY}`)
@@ -63,8 +58,6 @@ export default {
         },
         GetWeather(result) {
             this.weather = result;
-            // const weatheer = JSON.stringify(this.weather);
-            // localStorage.setItem('weather', weatheer);
         },
         dateBuilder () {
             let d = new Date();
@@ -85,27 +78,34 @@ export default {
 }
 </script>
     
-<style lang="scss">
+<style lang="scss" scoped>
 
 main {
     text-align: center;
     color: #394C60;
     background-color: #CFD1E0;
-    width: 100%;
+    position: relative;
 }
 .title{
     font-size: 40px;
     margin-top: 20px;
 }
+
+
 .list-enter-active,
 .list-leave-active {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.4s ease-in-out;
+  position: absolute;
 }
 
-.list-enter-from ,
-.list-leave-to {
-  transform: translateX(30px);
+.list-enter-from {
+  transform: translateX(-230px);
   opacity: 0;
+}
+
+.list-leave-to {
+    transform: translateX(230px);
+    opacity: 0; 
 }
 
 </style>

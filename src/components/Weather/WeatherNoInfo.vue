@@ -16,7 +16,7 @@ export default {
         
         font-size: 21px;
         position: absolute;
-        top: 140px;
+        top: 155px;
         left: 0;
         right: 0;
         bottom: 0;

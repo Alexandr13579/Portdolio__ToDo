@@ -2,7 +2,8 @@
     <li 
     @click="task.complited = !task.complited, $emit('checked', task)"
     :class="task.complited ? 'complitedLi' : '' "
-    class="list__item">
+    class="list__item"
+    >
         <input-checkbox v-model="task.complited" />
         <p :class="task.complited ? 'complited' : '' ">{{ task.title }}</p>
         <button @click="$emit('remove', task)" class="list__btn"><img src="../../assert/todo/trash.svg" alt="delete"></button>
@@ -16,16 +17,7 @@ export default {
             type: Object,
             required: true,
         }
-    }, 
-    data() {
-        return{ 
-
-        }
     },
-    methods: {
-
-    },
-
 }
 </script>
 
@@ -45,11 +37,12 @@ export default {
         transition: all ease .5s;
 
         &.complitedLi{
-            background-color: #262626;
+            background-color: #262525;
         }
 
         p{
-            flex-grow: 1;
+            flex: 1 1 100%;
+            text-align: left;
             color: #F2F2F2;
         }
 
@@ -67,7 +60,6 @@ export default {
             text-decoration: line-through;
             color: #808080;
             transition: all ease .5s;
-
         }
     }
 </style>
