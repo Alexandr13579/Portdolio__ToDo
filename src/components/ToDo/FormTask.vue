@@ -65,6 +65,8 @@ export default {
         border-radius: 8px;
         font-size: 16px;
         padding: 16px;
+        outline: none;
+        appearance:none;
     }
 }
 
@@ -73,18 +75,14 @@ export default {
       main{
         .addTask{
           gap: 4px;
-
-          .input{
-            font-size: 13px;
-            padding: 8px;
-          }
-
+          flex-direction: column;
           .button {
-            padding: 8px;
-            font-size: 13px;
-
-            content: '+';
+            padding: 10px;
+            align-self: flex-end;
           }
+        }
+        .list__tasks{
+            margin-top: 25px;
         }
       }
     }

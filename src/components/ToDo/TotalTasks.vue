@@ -17,6 +17,7 @@ export default {
         .totals__tasks{
         display: flex;
         justify-content: space-between;
+        font-style: 16px;
 
         p{
             color: #4EA8DE;

@@ -67,11 +67,12 @@ export default {
 }
 </script>
   
-<style lang="scss">
+<style lang="scss" scoped>
 
 .wrapper__todo{
       padding-top: 45px;
       width: 100%;
+      height: 100%;
       max-width: 700px;
       margin: 0 auto;
       position: relative;

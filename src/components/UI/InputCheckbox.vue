@@ -23,10 +23,9 @@ export default {
     $green: #06842c;
 
 input[type="checkbox"] {
-        min-width:1.5rem ;
         position: relative;
-        width: 1.5em;
-        height: 1.5em;
+        width: 22px;
+        height: 20px;
         border: 1px solid $inputBorder;
         border-radius: 50%;
         appearance: none;
@@ -38,7 +37,7 @@ input[type="checkbox"] {
         content: '';
         display: block;
         top: 3px;
-        left: 7.5px;
+        left: 6.3px;
         width: 6px;
         height: 10px;
         border-style: solid;

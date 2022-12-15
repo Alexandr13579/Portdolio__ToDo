@@ -1,15 +1,19 @@
-<template lang="">
+<template>
     <aside class="aside"
     :class="{ 'swap__menu' : swap, 'openLitle': openLitle }">
         <div class="logo"><span class="material-symbols-outlined">person</span></div>
-        <div class="button-swap__menu" @click="swapMenu">
-            <button>
-                <span @mouseover="openLitleSwap" @mouseout="openLitleSwap" class="material-symbols-outlined btn">double_arrow</span>
+        <div class="button-swap__menu">
+            <button 
+            @Touch="swap = !swap"
+            @click="swap = !swap" 
+            @mouseover="openLitle = true" 
+            @mouseout="openLitle = false">
+                <span class="material-symbols-outlined btn">double_arrow</span>
             </button>
         </div>
         <div class="menu__list">
             <router-link to="/">
-                <span class="material-symbols-outlined">home</span>
+                <span class="material-symbols-outlined">cottage</span>
                 <span class="text">Main</span>
             </router-link>
             <router-link to="/Weather">
@@ -25,11 +29,13 @@
                 <span class="text">DaTo</span>
             </router-link>
         </div>
-
     </aside>
 </template>
+
 <script>
+
 export default {
+    name: 'my-header',
     data () {
         return {
             swap: false,
@@ -46,7 +52,9 @@ export default {
     }
 }
 </script>
+
 <style lang="scss" scoped>
+    
     .aside{
         width: 64px;
         background-color: #394C60;
@@ -54,24 +62,25 @@ export default {
 
         display: flex;
         flex-direction: column;
-        padding: 10px;
+        padding: 16px;
         
         color: #EFECE7;
         transition: width .3s ease-out;
 
-        position: absolute;
+        position: fixed;
         top: 0;
         left: 0;
         z-index: 99;
 
         &.openLitle{
         width: 70px;
+
     }
 
         .logo{
-            margin: 16px 0px 16px 0px;
+            margin: 16px 0px 16px 0px;  
             span{
-                font-size: 40px;
+                font-size: 32px;
             }
         }
 
@@ -104,13 +113,30 @@ export default {
         .menu__list{
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            padding: 5px; 
             align-items: flex-start;      
             
+            a{
+                width: 28px;
+                margin-bottom: 17px;
+                display: flex;
+                align-items: center;
+                text-align: center;
+                cursor: pointer;
+                transition: all ease-out .3s;
+
+                
+                &:hover{
+                    .material-symbols-outlined, .text{
+                        color: #A38970;
+                        transition: all ease-out .3s;
+
+                    }
+                }
+            }
             a.router-link-active{
         
                 .material-symbols-outlined, .text{
+                    transition: all ease-out .3s;
                     color: #A38970;
                 }
 }
@@ -121,47 +147,27 @@ export default {
             }
             .text {
                 margin-left: 10px;
-
                 opacity: 0;
                 visibility: hidden;
                 font-size: 0px;
                 color: #FFFFFF;
 
                 transform: translate(-15px);
-                transition: opacity .3s ease-out, transform .3s ease-out;
-            }
-
-            a{
-                margin-bottom: 17px;
-                display: flex;
-                align-items: center;
-                cursor: pointer;
-                
-                &:hover{
-                    .material-symbols-outlined, .text{
-                        color: #A38970;
-                    }
-                }
+                transition: all .2s ease-out;
             }
         }
 
         &.swap__menu{
             width: 300px;
-            animation: wrapAside none;
             .button-swap__menu{
             top: - 50px;
             align-self: flex-end;
             transform: rotate(180deg);
 
             button{
-                background: none;
-                outline: none;
-                appearance: none;
-
                 span{
                     color: #FFFFFF;
-                    font-size: 24px;
-                    animation: wrapButton none;
+                    font-size: 28px;
 
                     &:hover{
                         transform: translate(11px, 0px);
@@ -175,7 +181,7 @@ export default {
             .text {
                 opacity: 1;
                 visibility: visible;
-                font-size: 22px;
+                font-size: 24px;
                 transform: translate(0px);
             }
         }
@@ -183,8 +189,35 @@ export default {
     }
 
     @media (max-width: 420px) {
-    // .aside{
-    //     width: 54px;
-    // }
+    .aside{
+        width: 50px;
+        padding: 11px;
+        &.openLitle{
+        width: 0px;
+    }
+
+        .logo{
+            margin: 16px 0px 16px 0px;  
+            span{
+                font-size: 28px;
+            }
+        }
+
+        .button-swap__menu{
+            button{
+                span{
+                    font-size: 22px;
+                }
+            }
+        }
+        .menu__list{
+            a{
+                width: 24px;
+            }
+            .material-symbols-outlined{
+                font-size: 24px;
+            }
+        }
+    }
 }
 </style>

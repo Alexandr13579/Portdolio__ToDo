@@ -1,17 +1,16 @@
 <template>
   <div class="app">
-      <myHeader />
+    <my-header />
+    <div class="body">
       <router-view></router-view>
+      <!-- <my-footer /> -->
+    </div>
   </div>
 </template>
 
 <script>
-import myHeader from '@/components/My-Header.vue'
-    
+
   export default {
-    components: {
-      myHeader
-    }
   }
 </script>
 
@@ -19,14 +18,17 @@ import myHeader from '@/components/My-Header.vue'
 @import "@/assert/reset.css";
 
 .app {
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
   background-color: #1A1A1A;
   font-family:Arial, Helvetica, sans-serif;
   box-sizing: border-box;
   display: flex;
 }
 
-main{
+.body{
+  display: flex;
+  flex-direction: column;
   margin-left: 64px;
   width: 100%;
 }
@@ -39,10 +41,10 @@ main{
   margin: 0 auto;
 }
 
+
 @media (max-width: 420px) {
-  main{
-    // margin-left: 54px;
-    width: 100%;
+  .body{
+    margin-left: 50px;
   }
 
   .container{

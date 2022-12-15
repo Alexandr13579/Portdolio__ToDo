@@ -81,10 +81,12 @@ export default {
 <style lang="scss" scoped>
 
 main {
+    position: relative;
     text-align: center;
     color: #394C60;
     background-color: #CFD1E0;
-    position: relative;
+    width: 100%;
+    height: 100%;
 }
 .title{
     font-size: 40px;
