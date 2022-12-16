@@ -1,17 +1,15 @@
 <template>
-    <div class="wrapper">
-        <ul class="list" >
-            <transition-group name="tasks">
-                <ListTask 
-                    v-for="task in tasks" 
-                    :key="task.id" 
-                    :task="task"
-                    @checked="$emit('checked', task)"
-                    @remove="$emit('remove', task)">
-                </ListTask>
-            </transition-group>
-        </ul>
-    </div>
+    <ul class="list" >
+        <transition-group name="tasks">
+            <ListTask 
+                v-for="task in tasks" 
+                :key="task.id" 
+                :task="task"
+                @checked="$emit('checked', task)"
+                @remove="$emit('remove', task)">
+            </ListTask>
+        </transition-group>
+    </ul>
 </template>
 
 <script>
@@ -40,6 +38,7 @@ export default {
         display: flex;
         flex-direction: column;
         gap: 12px;
+        
         margin-top: 25px;
         font-style: 16px;
     }

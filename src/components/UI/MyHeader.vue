@@ -2,12 +2,15 @@
     <aside class="aside"
     :class="{ 'swap__menu' : swap, 'openLitle': openLitle }">
         <div class="logo"><span class="material-symbols-outlined">person</span></div>
-        <div class="button-swap__menu">
+        <div class="button-swap__menu"
+            @mouseenter ="openLitle = true" 
+            @mouseleave ="openLitle = false">
             <button 
-            @Touch="swap = !swap"
-            @click="swap = !swap" 
-            @mouseover="openLitle = true" 
-            @mouseout="openLitle = false">
+            type="button"
+            class="btn__swap btn__laptop"
+            @click="swap = !swap"
+            @touchstart="swapFunc"
+            >
                 <span class="material-symbols-outlined btn">double_arrow</span>
             </button>
         </div>
@@ -33,7 +36,7 @@
 </template>
 
 <script>
-
+import { Ref } from 'vue';
 export default {
     name: 'my-header',
     data () {
@@ -43,12 +46,10 @@ export default {
         }
     },
     methods: {
-        swapMenu() {
-            this.swap = !this.swap
+        swapFunc() {
+            this.openLitle = false;
+            this.swap = !this.swap;
         },
-        openLitleSwap() {
-            this.openLitle = !this.openLitle
-        }
     }
 }
 </script>
@@ -91,7 +92,7 @@ export default {
             transition: all ease-out .3s;
             cursor: pointer;
 
-            button{
+            .btn__swap{
                 background: none;
                 outline: none;
                 appearance: none;                
@@ -116,7 +117,6 @@ export default {
             align-items: flex-start;      
             
             a{
-                width: 28px;
                 margin-bottom: 17px;
                 display: flex;
                 align-items: center;
@@ -159,15 +159,18 @@ export default {
 
         &.swap__menu{
             width: 300px;
+
+            &.openLitle{
+                width: 300px;
+
+            }
             .button-swap__menu{
             top: - 50px;
             align-self: flex-end;
             transform: rotate(180deg);
 
-            button{
+            .btn__swap{
                 span{
-                    color: #FFFFFF;
-                    font-size: 28px;
 
                     &:hover{
                         transform: translate(11px, 0px);
@@ -192,9 +195,6 @@ export default {
     .aside{
         width: 50px;
         padding: 11px;
-        &.openLitle{
-        width: 0px;
-    }
 
         .logo{
             margin: 16px 0px 16px 0px;  
@@ -204,7 +204,7 @@ export default {
         }
 
         .button-swap__menu{
-            button{
+            .btn__swap{
                 span{
                     font-size: 22px;
                 }
@@ -220,4 +220,16 @@ export default {
         }
     }
 }
+
+// @media (max-width: 500px) {
+//     .btn__laptop{
+//         display: none;
+//     }
+// }
+
+// @media (min-width: 500px) {
+//     .btn__mobile{
+//         display: none;
+//     }
+// }
 </style>

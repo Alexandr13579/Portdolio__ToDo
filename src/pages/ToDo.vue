@@ -94,7 +94,9 @@ export default {
 
     @media (max-width: 420px) {
       main{
-
+        .list__tasks{
+          margin-top: 25px;
+        }
         .totals__tasks{
           flex-direction: column;
           gap: 8px;
@@ -102,11 +104,6 @@ export default {
 
         .addTask{
           gap: 4px;
-
-          .input{
-            font-size: 13px;
-            padding: 8px;
-          }
 
           .button {
             padding: 8px;
