@@ -38,9 +38,7 @@ export default {
         display: flex;
         flex-direction: column;
         gap: 12px;
-        
         margin-top: 25px;
-        font-style: 16px;
     }
     
 .tasks-move, 

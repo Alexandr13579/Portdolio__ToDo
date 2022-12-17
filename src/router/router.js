@@ -2,6 +2,7 @@ import {  createRouter, createWebHashHistory } from "vue-router";
 import ToDo from '@/pages/ToDo'
 import Main from '@/pages/Main'
 import Weather from '@/pages/Weather'
+import News from "@/pages/News"
 
 const routes = [
     {
@@ -15,6 +16,10 @@ const routes = [
     {
         path: '/Weather',
         component: Weather
+    },
+    {
+        path: '/News',
+        component: News
     }
 ]
 

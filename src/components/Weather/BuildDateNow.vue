@@ -15,8 +15,12 @@ export default {
 </script>
 <style lang="scss" scoped>
     .info__date {
-            font-size: 32px;
+            font-size: 26px;
             font-weight: 400;
             font-style: italic;
+
+            @media (max-width: 520px) {
+                font-size: 18px;
+            }
         }
 </style>

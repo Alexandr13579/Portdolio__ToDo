@@ -89,10 +89,23 @@ main {
     height: 100%;
 }
 .title{
-    font-size: 40px;
-    margin-top: 20px;
+    font-size: 50px;
+    margin-top: 25px;
 }
 
+
+
+@media (max-width: 520px) {
+    main{
+        .title{
+        font-size: 35px;
+        }
+
+        .input{
+            font-size: 20px;
+        }
+    }
+}
 
 .list-enter-active,
 .list-leave-active {

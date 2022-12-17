@@ -14,12 +14,16 @@ export default {
 <style lang="scss">
     .info__no{
         
-        font-size: 21px;
         position: absolute;
         top: 155px;
         left: 0;
         right: 0;
         bottom: 0;
+
+        .info__no-text{
+            font-size: 21px;
+            color: #394C60;
+        }
 
         @keyframes infoNo__Btn {
             0%{
@@ -39,6 +43,14 @@ export default {
             span{
                 font-size: 35px;
             }
+        }
+        @media (max-width: 520px) {
+            top: 140px;
+            padding: 0px 10px;
+
+            .info__no-text{
+            font-size: 19px;
+        }
         }
     }
 </style>

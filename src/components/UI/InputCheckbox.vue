@@ -37,7 +37,7 @@ input[type="checkbox"] {
         content: '';
         display: block;
         top: 3px;
-        left: 6.3px;
+        left: 7.3px;
         width: 6px;
         height: 10px;
         border-style: solid;

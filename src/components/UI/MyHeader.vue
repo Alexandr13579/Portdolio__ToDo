@@ -27,9 +27,9 @@
                 <span class="material-symbols-outlined">checklist</span>
                 <span class="text">ToDo</span>
             </router-link>
-            <router-link to="/">
-                <span class="material-symbols-outlined">open_with</span>
-                <span class="text">DaTo</span>
+            <router-link to="/News">
+                <span class="material-symbols-outlined">newspaper</span>
+                <span class="text">News</span>
             </router-link>
         </div>
     </aside>

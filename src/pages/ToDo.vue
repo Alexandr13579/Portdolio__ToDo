@@ -101,14 +101,6 @@ export default {
           flex-direction: column;
           gap: 8px;
         }
-
-        .addTask{
-          gap: 4px;
-
-          .button {
-            padding: 8px;
-          }
-        }
       }
     }
 </style>

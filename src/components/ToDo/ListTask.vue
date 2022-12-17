@@ -2,10 +2,9 @@
     <li 
     @click="task.complited = !task.complited, $emit('checked', task)"
     :class="task.complited ? 'complitedLi' : '' "
-    class="list__item"
-    >
+    class="list__item">
         <input-checkbox v-model="task.complited" />
-        <p :class="task.complited ? 'complited' : '' ">{{ task.title }}</p>
+        <span class="item__title" :class="task.complited ? 'complited' : '' ">{{ task.title }}</span>
         <button @click="$emit('remove', task)" class="list__btn"><img src="../../assert/todo/trash.svg" alt="delete"></button>
     </li>
 </template>
@@ -21,12 +20,13 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-    li {
-        display: flex;
+<style lang="scss">
+    .list__item {
+        display: inline-flex;
         justify-content: space-between;
         align-items: center;
         width: 100%;
+        min-height: 100%;
         background-color: #333333;
         border: 1px solid #333333;
         box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.06);
@@ -35,14 +35,20 @@ export default {
         padding: 16px;
         cursor: pointer; 
         transition: all ease .5s;
+        overflow-wrap: break-word;
 
         &.complitedLi{
             background-color: #262525;
+            white-space: normal;        
         }
 
-        p{
-            flex: 1 1 100%;
-            text-align: left;
+        input {
+            flex: 0 0 22px;
+        }
+
+        .item__title{
+            flex: 1 1 auto;
+            font-size: 16px;
             color: #F2F2F2;
         }
 

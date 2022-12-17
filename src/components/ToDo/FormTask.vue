@@ -8,7 +8,7 @@
             />
             <button 
             @click="addNewTask"
-            class="button"
+            class="btnAdd"
             >Add &#43;</button>
         </form>
 </template>
@@ -60,7 +60,7 @@ export default {
         border: 1px solid #9747FF;
         }
     }
-    .button{
+    .btnAdd{
         background: #4177a1;
         border-radius: 8px;
         font-size: 16px;
@@ -68,22 +68,15 @@ export default {
         outline: none;
         appearance:none;
     }
-}
 
-
-@media (max-width: 420px) {
-      main{
-        .addTask{
-          gap: 4px;
-          flex-direction: column;
-          .button {
+    @media (max-width: 420px) {
+        gap: 4px;
+        flex-direction: column;
+        .btnAdd {
             padding: 10px;
             align-self: flex-end;
-          }
         }
-        .list__tasks{
-            margin-top: 25px;
-        }
-      }
     }
+}
+
 </style>
