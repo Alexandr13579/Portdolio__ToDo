@@ -3,7 +3,7 @@
       <div class="black"></div>
       <div class="container">
         <div class="wrapper__todo">
-          <FormTask @create = addNewTask></FormTask>
+            <FormTask @create = addNewTask></FormTask>
           <div class="list__tasks">
               <TotalTasks :tasks="tasks" :complitedTasks="complitedTasks" />
               <ListTasks  @checked="sizeComplited" @remove="removeTask" :tasks="tasks" />
@@ -24,7 +24,7 @@ export default {
           tasks: [
 
           ],
-          complitedTasks: 0
+          complitedTasks: 0,
       }
     },
     methods: {
