@@ -2,8 +2,9 @@
     <main>
         <div class="container">
             <h1 class="title">The News</h1>
-            <button @click="NewNews">Click</button> 
-            <FilterNews />
+            <SearchExactNews />
+            <SearchTopNews :filter="filter"  />
+            <my-btnSearhPush @click="NewNews">btn</my-btnSearhPush>
             <!-- <NewsList v-if="show" :news="news"/> -->
         </div>
     </main>
@@ -12,6 +13,9 @@
 <script>
 import NewsList from '@/components/News/NewsList.vue'
 import FilterNews from '@/components/News/FilterNews.vue'
+import SearchTopNews from '@/components/News/SearchTopNews.vue'
+import SearchExactNews from '@/components/News/SearchExactNews.vue'
+
 
 export default {
     data() {
@@ -20,16 +24,17 @@ export default {
             KEY__API: 'apiKey=2a75744890d847a39a0e4a5c69e74f9c',
             news: {},
             show: false,
-            category: ['business', 'entertainment', 'general', 'health', 'science', 'sport', 'stechnology'],
-            country: ['en', 'ru', ],
-            sourse: [],
             q: '',
-            
+            filter: {
+                category: ['business', 'entertainment', 'general', 'health', 'science', 'sport', 'stechnology'],
+                country: ['en', 'ru', ],
+                sourse: [1, 2],
+            }
         }
     },
     methods: { 
         NewNews() {
-            fetch(`https://newsapi.org/v2/top-headlines?q=trump&${this.category[1]}&${this.KEY__API}`)
+            fetch(`https://newsapi.org/v2/top-headlines?q=Apple&pageSize=50&${this.KEY__API}`)
             .then(response => {
                 return response.json();
             })
@@ -42,7 +47,7 @@ export default {
         }
     },
     components: {
-        NewsList, FilterNews
+        NewsList, FilterNews, SearchTopNews, SearchExactNews
     }
 }
 </script>
@@ -57,6 +62,6 @@ export default {
     .title{
         margin-top: 20px;
         font-size: 30px;
-        text-align: center;
+        // text-align: center;
     }
 </style>

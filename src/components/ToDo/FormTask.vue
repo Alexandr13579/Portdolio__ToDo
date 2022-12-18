@@ -6,10 +6,10 @@
             v-model="task.title"
             class="input"
             />
-            <button 
+            <my-btnSearhPush 
             @click="addNewTask"
             class="btnAdd"
-            >Add &#43;</button>
+            >Add &#43;</my-btnSearhPush>
         </form>
 </template>
 
@@ -59,14 +59,6 @@ export default {
         &:focus{
         border: 1px solid #9747FF;
         }
-    }
-    .btnAdd{
-        background: #4177a1;
-        border-radius: 8px;
-        font-size: 16px;
-        padding: 16px;
-        outline: none;
-        appearance:none;
     }
 
     @media (max-width: 420px) {
