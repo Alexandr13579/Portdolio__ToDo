@@ -19,10 +19,6 @@ export default {
 
 <style lang="scss" scoped>
 .searchExat {
-    margin: 20px 0px;
-    padding: 10px 0px;
-    border-top: 2px solid #CFD1E0;
-    border-bottom: 2px solid #CFD1E0;
 
     &__title {
         font-size: 24px;

@@ -2,8 +2,10 @@
     <main>
         <div class="container">
             <h1 class="title">The News</h1>
-            <SearchExactNews />
-            <SearchTopNews :filter="filter"  />
+            <div class="search__news">
+                <SearchTopNews :filter="filter"  />
+                <SearchExactNews />
+            </div>
             <my-btnSearhPush @click="NewNews">btn</my-btnSearhPush>
             <!-- <NewsList v-if="show" :news="news"/> -->
         </div>
@@ -34,7 +36,7 @@ export default {
     },
     methods: { 
         NewNews() {
-            fetch(`https://newsapi.org/v2/top-headlines?q=Apple&pageSize=50&${this.KEY__API}`)
+            fetch(`https://newsapi.org/v2/everything?q=bitcoin&${this.KEY__API}`)
             .then(response => {
                 return response.json();
             })
@@ -63,5 +65,12 @@ export default {
         margin-top: 20px;
         font-size: 30px;
         // text-align: center;
+    }
+    .search__news {
+        margin: 20px 0px;
+        padding: 10px 0px;
+        border-top: 2px solid #CFD1E0;
+        display: flex;
+        justify-content: space-between;
     }
 </style>
