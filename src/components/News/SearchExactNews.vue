@@ -48,8 +48,5 @@ export default {
     &__btn-text {
         margin-right: 5px;
     }
-    &__btn-img {
-        
-    }
 }
 </style>

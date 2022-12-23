@@ -1,35 +1,27 @@
 <template>
     <div class="searchTop">
-        <h3 class="searchTop__title">Top News</h3>
-        <div class="searchTop__block-search">
-            <input class="searchTop__input" type="text" />
-            <my-btnSearhPush class="searchTop__btn">
-                <span class="searchTop__btn-text">Search</span> 
-                <span class="material-symbols-outlined searchTop__btn-img">search</span>
-            </my-btnSearhPush>
-        </div>
         <div class="searchTop__block-filter">
-            <select name="country" id="country">
-                <option value="">Select country</option>
-                <option 
+            <select class="searchTop-select" v-model="country" name="country" id="country">
+                <option disabled>Select country</option>
+                <option
+                @change=""
+                class="searchTop-option" 
                 v-for="item of filter.country"
-                value=""
                 >{{ item }}</option>
             </select>
-            <select name="category" id="category">
-                <option value="">Select category</option>
+            <select class="searchTop-select"  v-model="category" name="category" id="category">
+                <option disabled>Select category</option>
                 <option 
                 v-for="item of filter.category"
-                value=""
+                class="searchTop-option" 
                 >{{ item }}</option>
             </select>
-            <select name="sourse" id="sourse">
-                <option value="">Select publisher</option>
+            <!-- <select name="sourse" id="sourse">
+                <option disabled>Select publisher</option>
                 <option 
                 v-for="item of filter.sourse"
-                value=""
                 >{{ item }}</option>
-            </select>
+            </select> -->
         </div>
     </div>
 </template>
@@ -42,6 +34,12 @@ export default {
             required: true
         }
     },
+    data() {
+        return {
+            country: 'Select country' ,
+            category: 'Select category',
+        }
+    },
     methods: {
         sear() {
             console.log(this.filter)
@@ -52,11 +50,6 @@ export default {
 
 <style lang="scss" scoped>
 .searchTop {
-    &__title {
-        font-size: 24px;
-        font-weight: 500;
-        margin-bottom: 10px;
-    }
     &__block-search {
         display: flex;
         align-items: center;
@@ -69,7 +62,30 @@ export default {
         border-radius: 12px 0px 0px 12px;
         min-height: 56px;
     }
-    &__block-filter {}
+    &__block-filter {
+        display: flex;
+        flex-wrap: wrap;
+
+        .searchTop-select{
+            width: 200px;
+            background-color: rgba(227, 227, 227, 0.412);
+            padding: 10px;
+            border-radius: 12px;
+
+            &:not(:last-child) {
+                margin-right: 10px;
+            }
+
+            &.searchTop-option{
+                padding: 10px 0px;
+                margin: 10px 0px;
+
+                &:hover{
+                    background-color: #394C60;
+                }
+            }
+        }
+    }
     &__btn {
         display: flex;
         align-items: center;

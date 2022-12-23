@@ -3,7 +3,7 @@
     class="list__item">
         <div class="item__content">
             <header class="item__header">
-                <h3 class="header__publications-title">{{item.source.name}}</h3> 
+                <h3 class="header__publications-title" v-if="item.source.name != null ? autor = item.source.name : autor = 'anonymous' ">{{ autor }}</h3> 
                 <p class="header__time">{{ item.publishedAt }}</p>
             </header>
             <main class="item__main">
@@ -25,7 +25,8 @@ export default {
     },
     data() {
         return {
-            url: this.item.url
+            url: this.item.url,
+            autor: ''
         }
     },
     methods: {
