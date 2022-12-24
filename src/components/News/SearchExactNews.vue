@@ -1,9 +1,8 @@
 <template>
     <div class="searchExat">
-        <h3 class="searchExat__title">Search News by keyword for all time</h3>
         <div class="searchExat__block">
-            <input class="searchExat__input" type="text" placeholder="Enter keyword" />
-            <my-btnSearhPush class="searchExat__btn">
+            <input v-model="keyWord" class="searchExat__input" type="text" placeholder="Enter keyword" />
+            <my-btnSearhPush @click="searchNews" type="submit" class="searchExat__btn">
                 <span class="searchExat__btn-text">Search</span> 
                 <span class="material-symbols-outlined searchExat__btn-img">search</span>
             </my-btnSearhPush>
@@ -13,7 +12,16 @@
 
 <script>
 export default {
-
+    data() {
+        return {
+            keyWord: ''
+        }
+    },
+    methods: {
+        searchNews() {
+            this.$emit('keyWord', this.keyWord)
+        }
+    }
 }
 </script>
 

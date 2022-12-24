@@ -2,13 +2,11 @@
     <main>
         <div class="container">
             <h1 class="title">The News</h1>
-            <div class="choice-search">
-                <button class="choice-search__btn">Search Top News</button>
-                <button class="choice-search__btn">Search News by keyword for all time</button>
-            </div>
             <div class="search__news">
                 <SearchTopNews :filter="filter"  />
-                <SearchExactNews />
+            </div>
+            <div class="search__news">
+                
             </div>
             <my-btnSearhPush @click="NewNews">btn</my-btnSearhPush>
             <NewsList v-if="show" :news="news"/>
@@ -21,7 +19,6 @@ import NewsList from '@/components/News/NewsList.vue'
 import SearchTopNews from '@/components/News/SearchTopNews.vue'
 import SearchExactNews from '@/components/News/SearchExactNews.vue'
 
-
 export default {
     data() {
         return {
@@ -30,7 +27,7 @@ export default {
             KEY__API: 'apiKey=2a75744890d847a39a0e4a5c69e74f9c',
             news: {},
             show: false,
-            quareNews: '',
+            searchNews: '',
             filter: {
                 category: ['business', 'entertainment', 'general', 'health', 'science', 'sport', 'stechnology'],
                 country: ['ua', 'ru', 'us', 'gb'],
@@ -39,8 +36,15 @@ export default {
         }
     },
     methods: { 
-        NewNews() {
-            fetch(`${this.URL_TOP_NEWS}country=${this.filter.country[0]}&category=${this.filter.category[1]}&pageSize=100&${this.KEY__API}`)
+        NewNews(country, category) {
+            fetch(`${this.URL_TOP_NEWS}country=${this.filter.country[2]}&category=${this.filter.category[1]}&pageSize=100&${this.KEY__API}`)
+            .then(response => {
+                return response.json();
+            })
+            .then(this.new)
+        },
+        searchNewsKeyWord(keyWord) {
+            fetch(`${this.URL_EXATCT_NEWS}q=${keyWord}&pageSize=100&${this.KEY__API}`)
             .then(response => {
                 return response.json();
             })
@@ -72,10 +76,13 @@ export default {
         border-bottom: 2px solid #CFD1E0;
         // text-align: center;
     }
+    .choice-search{
+        display: flex;
+        gap: 8px;
+    }
     .search__news {
         margin: 20px 0px;
         padding: 10px 0px;
         display: flex;
-        justify-content: space-between;
     }
 </style>

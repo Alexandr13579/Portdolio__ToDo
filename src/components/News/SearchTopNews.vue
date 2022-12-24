@@ -1,27 +1,8 @@
 <template>
     <div class="searchTop">
         <div class="searchTop__block-filter">
-            <select class="searchTop-select" v-model="country" name="country" id="country">
-                <option disabled>Select country</option>
-                <option
-                @change=""
-                class="searchTop-option" 
-                v-for="item of filter.country"
-                >{{ item }}</option>
-            </select>
-            <select class="searchTop-select"  v-model="category" name="category" id="category">
-                <option disabled>Select category</option>
-                <option 
-                v-for="item of filter.category"
-                class="searchTop-option" 
-                >{{ item }}</option>
-            </select>
-            <!-- <select name="sourse" id="sourse">
-                <option disabled>Select publisher</option>
-                <option 
-                v-for="item of filter.sourse"
-                >{{ item }}</option>
-            </select> -->
+            <my-select :options="filter.category" :name="Object.keys(this.filter)[0]" />
+            <my-btnSearhPush @click="nameaO" class="choice-search__btn">Search Top News</my-btnSearhPush>
         </div>
     </div>
 </template>
@@ -29,20 +10,15 @@
 <script>
 export default {
     props: {
-        filter: {
-            type: Object,
-            required: true
-        }
+        filter: Object,
     },
     data() {
         return {
-            country: 'Select country' ,
-            category: 'Select category',
         }
     },
     methods: {
-        sear() {
-            console.log(this.filter)
+        nameaO() {
+            console.log(Object.keys(this.filter)[0])
         }
     }
 }
