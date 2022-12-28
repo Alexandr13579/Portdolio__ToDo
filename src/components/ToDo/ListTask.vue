@@ -20,7 +20,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
     .list__item {
         display: inline-flex;
         justify-content: space-between;

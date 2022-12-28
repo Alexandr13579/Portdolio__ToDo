@@ -24,6 +24,7 @@ export default {
 
 <style lang="scss" scoped>
     .list{
-        max-width: 600px;
+        margin-top: 10px;
+        width: 100%;
     }
 </style>

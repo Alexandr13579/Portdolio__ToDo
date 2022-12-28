@@ -1,17 +1,17 @@
 <template lang="">
     <li 
     class="list__item">
-        <div class="item__content">
-            <header class="item__header">
-                <h3 class="header__publications-title" v-if="item.source.name != null ? autor = item.source.name : autor = 'anonymous' ">{{ autor }}</h3> 
-                <p class="header__time">{{ item.publishedAt }}</p>
-            </header>
-            <main class="item__main">
+        <header class="item__header">
+            <h3 class="header__publications-title" v-if="item.source.name != null ? autor = item.source.name : autor = 'anonymous' ">{{ autor }}</h3> 
+            <p class="header__time">{{ item.publishedAt }}</p>
+        </header>
+        <main class="item__main">
+            <div class="item__main-content">
                 <p class="main__title">{{ item.title }}</p>
                 <p class="main__content">{{ item.description }}</p>
-                <div class="Item__link"><p @click="clickUrl">{{ url }}</p></div>
-            </main>
-        </div>
+            </div>
+            <div class="item__main-link"><my-btnSearhPush @click="clickUrl">Link to source</my-btnSearhPush></div>
+        </main>
     </li>
 </template>
 
@@ -40,50 +40,55 @@ export default {
 
 <style lang="scss" scoped>
 .list {
-    &__item {
-        background: #FAFCFC;
-        box-shadow: 0px 0px 4px -1px rgba(0, 0, 0, 0.25);
-        border-radius: 9px;
-        margin-bottom: 10px;
-    }
+  &__item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    padding: 10px;
+    box-shadow: -1px 1px 4px 0px rgba(0, 0, 0, 100%);
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 9px;
+    font-size: 18px;
+    font-weight: 400px;
+
+  }
 }
 .item {
-    &__content {}
-    &__header {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 18px;
-    }
-    &__main {
-
-    }
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 14px; 
+  }
+  &__main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 }
 .header {
-    &__publications-title {
-        font-weight: 700;
-        font-size: 14px;
-        line-height: 16px;
-        color: #292929;
-    }
-    &__time {}
+  &__publications-title {
+    font-weight: 600;
+  }
+  &__time {
+    font-style: italic;
+  }
+}
+.item {
+  &__main-content {}
+  &__main-link {
+    flex: 0 0 auto;
+    margin-left: 10px;
+  }
 }
 .main {
-    &__title {
-        font-weight: 700;
-        font-size: 18px;
-        line-height: 130%;
-        color: #292929;
-        margin-bottom: 5px;
-    }
-    &__content {
-        font-weight: 400;
-        font-size: 13px;
-        line-height: 140%;
-        color: #292929;
-    }
-}
-.Item {
-    &__link {}
+  &__title {
+    font-weight: 500;
+    font-size: 19px;
+  }
+  &__content {
+    font-style: italic;
+    font-weight: 300;
+  }
 }
 
 

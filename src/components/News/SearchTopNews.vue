@@ -1,8 +1,17 @@
 <template>
     <div class="searchTop">
         <div class="searchTop__block-filter">
-            <my-select :options="filter.category" :name="Object.keys(this.filter)[0]" />
-            <my-btnSearhPush @click="nameaO" class="choice-search__btn">Search Top News</my-btnSearhPush>
+            <div class="searchTop__select">
+                <div class="select">
+                    <h4 class="select__title">Category</h4>
+                    <my-select :options="filter.category" @selectedOption="selectedCategory" />
+                </div>
+                <div class="select">
+                    <h4 class="select__title">Country</h4>
+                    <my-select :options="filter.country" @selectedOption="selectedCountry"/>
+                </div>
+                <my-btnSearhPush @click="searchTopNews" class="select__tbn">Search Top News</my-btnSearhPush>
+            </div>
         </div>
     </div>
 </template>
@@ -11,14 +20,23 @@
 export default {
     props: {
         filter: Object,
+        required: true
     },
     data() {
         return {
+            category: this.filter.category[0],
+            country: this.filter.country[0]
         }
     },
     methods: {
-        nameaO() {
-            console.log(Object.keys(this.filter)[0])
+        selectedCategory(selected) {
+            this.category = selected;
+        },
+        selectedCountry(selected) {
+            this.country = selected;
+        },
+        searchTopNews() {
+            this.$emit('searchTopNews', this.category, this.country)
         }
     }
 }
@@ -31,44 +49,30 @@ export default {
         align-items: center;
         min-height: 56px;
     }
-    &__input {
-        font-size: 20px;
-        padding: 16px;
-        background-color: #CFD1E0;
-        border-radius: 12px 0px 0px 12px;
-        min-height: 56px;
-    }
+
     &__block-filter {
         display: flex;
         flex-wrap: wrap;
+    }
+    &__select{
+        display: flex;
+        background-color: rgba(0, 0, 0, 0.1);
+        border-radius: 12px;
+        .select{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px;
+            
 
-        .searchTop-select{
-            width: 200px;
-            background-color: rgba(227, 227, 227, 0.412);
-            padding: 10px;
-            border-radius: 12px;
-
-            &:not(:last-child) {
-                margin-right: 10px;
-            }
-
-            &.searchTop-option{
-                padding: 10px 0px;
-                margin: 10px 0px;
-
-                &:hover{
-                    background-color: #394C60;
-                }
+            &__title{
+                margin-bottom: 8px;
             }
         }
-    }
-    &__btn {
-        display: flex;
-        align-items: center;
-        border-radius: 0px 12px 12px 0px;
-    }
-    &__btn-text {
-        margin-right: 5px;
+        .select__tbn{
+            height: 100%;
+        }
     }
 }
 
