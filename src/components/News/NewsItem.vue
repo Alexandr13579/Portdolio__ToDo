@@ -74,7 +74,6 @@ export default {
   }
 }
 .item {
-  &__main-content {}
   &__main-link {
     flex: 0 0 auto;
     margin-left: 10px;

@@ -15,6 +15,9 @@ export default {
 }
 </script>
 
-<style lang="">
-    
+<style lang="scss" scoped>
+    option{
+        background-color: #6e7f91;
+        cursor: pointer;
+    }
 </style>

@@ -3,7 +3,7 @@
         <div class="container">
             <h1 class="title">The News</h1>
             <div class="search__news">
-                <SearchTopNews :filter="filter" @searchTopNews="NewNews"  />
+                <SearchTopNews  :filter="filter" @searchTopNews="NewNews"  />
             </div>
             <div class="search__news">
                 
@@ -77,8 +77,7 @@ export default {
         margin: 20px 0px;
         padding: 10px 0px;
         font-size: 30px;
-        border-bottom: 2px solid #CFD1E0;
-        // text-align: center;
+        border-bottom: 2px solid rgba(0, 0, 0, 0.3);
     }
 
 </style>

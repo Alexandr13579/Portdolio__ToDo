@@ -56,7 +56,7 @@ export default {
     }
     &__select{
         display: flex;
-        background-color: rgba(0, 0, 0, 0.1);
+        // background-color: #919197;
         border-radius: 12px;
         .select{
             display: flex;
