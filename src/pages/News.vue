@@ -34,7 +34,7 @@ export default {
                 category: ['business', 'entertainment', 'general', 'health', 'science', 'sport',],
                 country: ['us', 'ru', 'ua', 'gb'],
                 sourse: [1, 2],
-            }
+            },
         }
     },
     methods: {

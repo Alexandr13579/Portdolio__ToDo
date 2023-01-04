@@ -4,7 +4,8 @@ import MyFooter from '@/components/UI/MyFooter'
 import MyBtnDeleteTrash from '@/components/UI/MyBtnDeleteTrash'
 import MyDialog from '@/components/UI/MyDialog'
 import MyBtnSearchPush from '@/components/UI/MyBtnSearchPush'
-import select from '@/components/UI/my-select'
+import MySelectCustom from '@/components/UI/MySelectCustom'
+import MyOptionCustom from '@/components/UI/MyOptionCustom'
 
 export default [
     InputCheckbox, 
@@ -13,5 +14,6 @@ export default [
     MyBtnDeleteTrash,
     MyDialog,
     MyBtnSearchPush,
-    select,
+    MySelectCustom,
+    MyOptionCustom,
 ]
