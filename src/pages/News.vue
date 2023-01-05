@@ -9,7 +9,7 @@
                 
             </div>
             <NewsList v-if="show" :news="news"/>
-            <div v-else class="else">edfef</div>
+            <div v-if="notShow">хуйпизда</div>
         </div>
     </main>
 </template>
@@ -27,12 +27,13 @@ export default {
             KEY__API: 'apiKey=2a75744890d847a39a0e4a5c69e74f9c',
             news: [],
             show: false,
+            notShow: false, 
             searchNews: '',
             thisSearchCountry: 'us',
             thisSearchCategory: 'business',
             filter: {
-                category: ['business', 'entertainment', 'general', 'health', 'science', 'sport',],
-                country: ['us', 'ru', 'ua', 'gb'],
+                category: ['Business', 'Entertainment', 'General', 'Health', 'Science', 'Sports', 'Technology'],
+                country: ['US', 'RU', 'UA', 'GB'],
                 sourse: [1, 2],
             },
         }
@@ -49,7 +50,10 @@ export default {
         new(result) {
             this.news = result.articles;
             this.show = true
-            console.log(this.news)
+
+            if (result.articles == false) {
+                this.notShow = true
+            }
         },    
 
         searchNewsKeyWord(keyWord) {

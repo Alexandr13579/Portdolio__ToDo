@@ -1,9 +1,9 @@
 <template lang="">   
     <li 
         class="select__item"
-        v-for="option in options"
         :key="option"
         :value="option"
+        @click="optionSelected"
         >{{ option }}
     </li>                
 </template>
@@ -12,11 +12,28 @@
 export default {
     name: 'MyOptionCustom',
     props: {
-        options: Array,
+        option: String,
+        required: true
     },
+    methods: {
+        optionSelected() {
+            this.$emit('optionSelected', this.option)
+        }
+    }
 }
 </script>
 
 <style lang="scss" scoped>
-    
+    .select__item{
+        transition: transform ease .3s;
+        padding: 5px;
+        width: 100%;
+
+
+        &:hover {
+            transform: scale3d(1, 1.1, 1);
+
+            
+        }
+    }
 </style>

@@ -1,13 +1,24 @@
 <template>
     <div class="searchTop">
         <div class="searchTop__filter">
-            <div class="filter__block">
-                <p class="filter__block-select" @mouseover="showCategpry = true" @mouseout="showCategpry = false">Category: <span class="filter__block-selected">Bisness</span></p>
-                <MySelectCustom :class="{show : showCategpry}" class="filter__block-filter" :options="filter.category" />
+            <div class="filter__block" @mouseover="showCategpry = true" @mouseout="showCategpry = false">
+                <p class="filter__block-select">Category: <span class="filter__block-selected">{{ category }}</span></p>
+                <MySelectCustom 
+                    :class="{show : showCategpry}" 
+                    class="filter__block-filter" 
+                    :options="filter.category"  
+                    @optionSelected="optionSelectedCategory"
+                />
+                <span class="material-symbols-outlined">expand_more</span>            
             </div>
-            <div class="filter__block">
-                <p class="filter__block-select">Country: <span class="filter__block-selected">US</span></p>
-                <MySelectCustom class="filter__block-filter" :options="filter.country" />
+            <div class="filter__block" @mouseover="showCountry = true" @mouseout="showCountry = false">
+                <p class="filter__block-select">Country: <span class="filter__block-selected">{{ country }}</span></p>
+                <MySelectCustom
+                    :class="{show : showCountry}"
+                    class="filter__block-filter" 
+                    :options="filter.country" 
+                    @optionSelected="optionSelectedCountry"
+                />
             </div>
             <my-btnSearhPush @click="searchTopNews" >Search Top News</my-btnSearhPush>
         </div>
@@ -24,15 +35,16 @@ export default {
         return {
             category: this.filter.category[0],
             country: this.filter.country[0],
-            showCategpry: false
+            showCategpry: false,
+            showCountry: false,
         }
     },
     methods: {
-        selectedCategory(selected) {
-            this.category = selected;
+        optionSelectedCategory(option) {
+            this.category = option;
         },
-        selectedCountry(selected) {
-            this.country = selected;
+        optionSelectedCountry(option) {
+            this.country = option;
         },
         searchTopNews() {
             this.$emit('searchTopNews', this.category, this.country)
@@ -50,7 +62,9 @@ export default {
 .filter {
     &__block {
     position: relative;
+
     background-color: rgba(0, 0, 0, 0.3);
+    cursor: pointer;
 
     height: 50px;
     padding: 10px;
@@ -63,20 +77,21 @@ export default {
 }
     &__block-select {
         font-size: 18px;
-        font-weight: 500;
+        font-weight: 400;
     }
-    &__block-selected {}
+
+    &__block-selected {
+        font-size: inherit;
+        font-weight: inherit;
+    }
 
     &__block-filter {
-    position: absolute;
-    top: 50px;
-    // opacity: 0;
-    // visibility: hidden;
-
+    
 
     &.show{
         opacity: 1;
         visibility: visible;
+        transform: translate(0px, 0px);
     }
   }
 }
