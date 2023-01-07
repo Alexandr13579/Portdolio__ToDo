@@ -2,7 +2,6 @@
     <li 
         class="select__item"
         :key="option"
-        :value="option"
         @click="optionSelected"
         >{{ option }}
     </li>                

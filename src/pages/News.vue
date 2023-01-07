@@ -3,13 +3,13 @@
         <div class="container">
             <h1 class="title">The News</h1>
             <div class="search__news">
-                <SearchTopNews  :filter="filter" @searchTopNews="NewNews"  />
+                <SearchTopNews :filter="filter" @optionSelectedSearch="filterSelectedNewNews"/>
             </div>
             <div class="search__news">
-                
+                <SearchExactNews :filter="filter" />
             </div>
             <NewsList v-if="show" :news="news"/>
-            <div v-if="notShow">хуйпизда</div>
+            <div v-else="notShow">хуйпизда</div>
         </div>
     </main>
 </template>
@@ -27,21 +27,28 @@ export default {
             KEY__API: 'apiKey=2a75744890d847a39a0e4a5c69e74f9c',
             news: [],
             show: false,
-            notShow: false, 
-            searchNews: '',
-            thisSearchCountry: 'us',
-            thisSearchCategory: 'business',
             filter: {
                 category: ['Business', 'Entertainment', 'General', 'Health', 'Science', 'Sports', 'Technology'],
                 country: ['US', 'RU', 'UA', 'GB'],
                 sourse: [1, 2],
             },
+            thisSearchCountry: '',
+            thisSearchCategory: '',
+            searchTop: true,
         }
     },
     methods: {
-        NewNews(category, country) {
+        mountedNewNews() {
+            [this.thisSearchCountry, this.thisSearchCategory] = [this.filter.country[0], this.filter.category[0]]
+            this.NewNews();
+        },
+        filterSelectedNewNews(country, category) {
+            [this.thisSearchCountry, this.thisSearchCategory] = [country, category]
+            this.NewNews();
+        },
+        NewNews() {
             this.show = false
-            fetch(`${this.URL_TOP_NEWS}country=${country}&category=${category}&pageSize=100&${this.KEY__API}`)
+            fetch(`${this.URL_TOP_NEWS}country=${this.thisSearchCountry}&category=${this.thisSearchCategory}&pageSize=100&${this.KEY__API}`)
             .then(response => {
                 return response.json();
             })
@@ -55,7 +62,6 @@ export default {
                 this.notShow = true
             }
         },    
-
         searchNewsKeyWord(keyWord) {
             fetch(`${this.URL_EXATCT_NEWS}q=${keyWord}&pageSize=100&${this.KEY__API}`)
             .then(response => {
@@ -66,7 +72,13 @@ export default {
     },
     components: {
         NewsList, SearchTopNews, SearchExactNews
+    },
+    mounted() {
+        if (this.searchTop) {
+            this.mountedNewNews()
+        }
     }
+    
 }
 </script>
 
