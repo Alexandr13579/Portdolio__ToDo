@@ -43,11 +43,11 @@ export default {
   &__item {
     display: flex;
     flex-direction: column;
-    margin-bottom: 10px;
+    margin-bottom: 13.5px;
     padding: 10px;
-    box-shadow: -1px 1px 4px 0px rgba(0, 0, 0, 100%);
-    background-color: rgba(0, 0, 0, 0.1);
-    border-radius: 9px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.06);
+    background-color: rgba($color: #333333, $alpha: 0.5);
+    border-radius: 8px;
     font-size: 18px;
     font-weight: 400px;
 

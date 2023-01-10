@@ -30,13 +30,13 @@ export default {
         left: 0;
         right: 0;
         bottom: 0;
-        background-color: rgba(0, 0, 0, 0.5);
+        background-color: rgba(0, 0, 0, 0.8);
         z-index: 100;
         display: flex;
     
         &__list {
             margin: auto;
-            background-color: #FFF;
+            background-color: #1A1A1A;
             border-radius: 13px;
             min-height: 70px;
             min-width: 300px;

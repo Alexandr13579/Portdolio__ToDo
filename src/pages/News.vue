@@ -1,15 +1,26 @@
 <template lang="">
     <main>
         <div class="container">
-            <h1 class="title">The News</h1>
-            <div class="search__news">
-                <SearchTopNews :filter="filter" @optionSelectedSearch="filterSelectedNewNews"/>
-            </div>
-            <div class="search__news">
-                <SearchExactNews :filter="filter" />
-            </div>
+            <h1 class="title">The TopNews</h1>
+                <section class="search">
+                    <div class="search__filter topNews">
+                        <SearchTopNews v-if="isTopNews" :filter="filter" @optionSelectedSearch="NewNews"/>
+                        <div v-else class="topNews__back" @click="backSearchTopNews">
+                            <span class="material-symbols-outlined arrow">arrow_back_ios</span>
+                            <p>Back to TopNews</p>
+                        </div>
+                    </div>
+                    <div class="search__filter exactNews">
+                        <my-btnSearhPush @click="showExatNews = true">
+                            Search by word
+                        </my-btnSearhPush>
+                        <my-dialog :show="showExatNews">
+                            <SearchExactNews :filter="filter" @searchExatNews="searchExatNews"/>
+                        </my-dialog>
+                    </div>
+                </section>
             <NewsList v-if="show" :news="news"/>
-            <div v-else="notShow">хуйпизда</div>
+            <my-LoadSpinner v-else />
         </div>
     </main>
 </template>
@@ -27,10 +38,13 @@ export default {
             KEY__API: 'apiKey=2a75744890d847a39a0e4a5c69e74f9c',
             news: [],
             show: false,
+            notShow: true,
+            showExatNews: false,
+            isTopNews: true,
             filter: {
-                category: ['Business', 'Entertainment', 'General', 'Health', 'Science', 'Sports', 'Technology'],
+                category: ['Business', 'General', 'Health', 'Science', 'Sports', 'Technology'],
                 country: ['US', 'RU', 'UA', 'GB'],
-                sourse: [1, 2],
+                first: ['Relevancy', 'Popularity', 'PublishedAt']
             },
             thisSearchCountry: '',
             thisSearchCategory: '',
@@ -38,17 +52,23 @@ export default {
         }
     },
     methods: {
-        mountedNewNews() {
-            [this.thisSearchCountry, this.thisSearchCategory] = [this.filter.country[0], this.filter.category[0]]
-            this.NewNews();
+        backSearchTopNews() {
+            this.isTopNews = true;
+            this.NewNews(this.filter.country[0], this.filter.category[0]);
         },
-        filterSelectedNewNews(country, category) {
-            [this.thisSearchCountry, this.thisSearchCategory] = [country, category]
-            this.NewNews();
-        },
-        NewNews() {
+        NewNews(country, category) {
             this.show = false
-            fetch(`${this.URL_TOP_NEWS}country=${this.thisSearchCountry}&category=${this.thisSearchCategory}&pageSize=100&${this.KEY__API}`)
+            fetch(`${this.URL_TOP_NEWS}country=${country}&category=${category}&pageSize=100&${this.KEY__API}`)
+            .then(response => {
+                return response.json();
+            })
+            .then(this.new)
+        },
+        searchExatNews(keyWord, first) {
+            this.show = false;
+            this.showExatNews = false;
+            this.isTopNews = false;
+            fetch(`${this.URL_EXATCT_NEWS}q=${keyWord}&sortBy=${first}&pageSize=100&${this.KEY__API}`)
             .then(response => {
                 return response.json();
             })
@@ -56,26 +76,21 @@ export default {
         },
         new(result) {
             this.news = result.articles;
-            this.show = true
+            setTimeout(() => {
+                this.show = true
+            }, 3000);
 
             if (result.articles == false) {
                 this.notShow = true
             }
         },    
-        searchNewsKeyWord(keyWord) {
-            fetch(`${this.URL_EXATCT_NEWS}q=${keyWord}&pageSize=100&${this.KEY__API}`)
-            .then(response => {
-                return response.json();
-            })
-            .then(this.new)
-        },
     },
     components: {
         NewsList, SearchTopNews, SearchExactNews
     },
     mounted() {
         if (this.searchTop) {
-            this.mountedNewNews()
+            this.NewNews(this.filter.country[0], this.filter.category[0])
         }
     }
     
@@ -84,16 +99,46 @@ export default {
 
 <style lang="scss" scoped>
     main {
-        background-color: #CFD1E0;
         width: 100%;
         height: 100%;
     }
     
     .title{
-        margin: 20px 0px;
+        margin: 20px 0px 5px 0px;
         padding: 10px 0px;
         font-size: 30px;
-        border-bottom: 2px solid rgba(0, 0, 0, 0.3);
+        border-bottom: 2px solid rgba(255,255,255, 0.9);
+    }
+
+    .search{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin-bottom: 30px ;
+        padding: 10px 0px;
+
+    }
+
+    .topNews{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .topNews__back{
+        display: flex;
+        align-items: center;
+        
+        font-size: 18px;
+        font-weight: 400;
+        
+        cursor: pointer;
+        transition: transform ease .3s;
+
+        &:hover{
+            transform: translate(-5px, 0px);
+
+        }
     }
 
 </style>

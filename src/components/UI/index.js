@@ -6,6 +6,7 @@ import MyDialog from '@/components/UI/MyDialog'
 import MyBtnSearchPush from '@/components/UI/MyBtnSearchPush'
 import MySelectCustom from '@/components/UI/MySelectCustom'
 import MyOptionCustom from '@/components/UI/MyOptionCustom'
+import MyLoadSpinner from '@/components/UI/MyLoadSpinner'
 
 export default [
     InputCheckbox, 
@@ -16,4 +17,5 @@ export default [
     MyBtnSearchPush,
     MySelectCustom,
     MyOptionCustom,
+    MyLoadSpinner
 ]

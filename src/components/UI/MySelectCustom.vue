@@ -3,7 +3,7 @@
         <p class="filter__select">Category: <span class="filter__selected">{{ category }}</span></p>
         <div class="filter__list-wrapper"  :class="{show : isShow}">
             <ul class="filter__list">
-                <MyOptionCustom
+                <my-OptionCustom
                     class="filter__item"
                     v-for="option of options"  
                     :option="option"
@@ -11,14 +11,14 @@
                 />
             </ul>
         </div>
-        <span class="material-symbols-outlined">expand_more</span>            
+        <span :class="{show: isShow}" class="material-symbols-outlined">expand_more</span>            
     </div>
    
 </template>
 
 <script>
 export default {
-    name: 'MySelectCustom',
+    name: 'my-SelectCustom',
     props: {
         options: {
             type: Array,
@@ -36,7 +36,6 @@ export default {
         optionSelected(option) {
             this.category = option
             this.$emit('optionSelected', option);
-            
         }
     }
 }
@@ -44,10 +43,8 @@ export default {
 
 <style lang="scss" scoped>
 .filter {
-
     position: relative;
-
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: #333333;
     cursor: pointer;
 
     height: 50px;
@@ -56,12 +53,12 @@ export default {
     margin-right: 7px;
 
     display: flex;
-    justify-content: center;
     align-items: center;
 
     &__select {
         font-size: 18px;
         font-weight: 400;
+        white-space: nowrap;    
     }
     &__selected {
         font-size: inherit;
@@ -72,8 +69,10 @@ export default {
         margin-top: -20px;
 
         position: absolute;
-        z-index: 99;
+        left: 0;
         top: 55px;
+        z-index: 99;
+
         transform: translate(0px, -10px);
 
         opacity: 0;
@@ -87,7 +86,7 @@ export default {
         }
     }
     &__list {
-        background-color: rgba(0, 0, 0, 0.5);
+        background-color: #333333;
 
         font-size: 18px;
         font-weight: 400;
@@ -97,8 +96,13 @@ export default {
         padding: 10px;
         border-radius: 12px;
     }
-    &__item {}
-}
-.material-symbols-outlined {
+
+    span {
+        transition: transform ease .3s;
+
+        &.show {
+            transform: rotate(180deg);
+        }
+    }
 }
 </style>

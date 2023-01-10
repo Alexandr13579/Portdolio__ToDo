@@ -1,7 +1,7 @@
 <template>
     <main>
         <div class="container">
-            <h2 class="title">World Weather</h2>
+            <h2 class="title">The World Weather</h2>
             <WeatherQuery 
             @GetLocationData="GetLocationData" />
             <div class="pos__relativ">
@@ -82,15 +82,14 @@ export default {
 
 main {
     position: relative;
-    text-align: center;
-    color: #394C60;
-    background-color: #CFD1E0;
     width: 100%;
     height: 100%;
 }
 .title{
-    font-size: 50px;
-    margin-top: 25px;
+    margin: 20px 0px 5px 0px;
+    padding: 10px 0px;
+    font-size: 30px;
+    border-bottom: 2px solid rgba(255,255,255, 0.9);
 }
 
 

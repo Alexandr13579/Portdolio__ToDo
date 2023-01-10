@@ -44,6 +44,9 @@ html,body {
 
 input,button,textarea {
   font-family: inherit;
+  color: inherit;
+  outline: none;
+  appearance:none;
 }
 
 input::-ms-clear {

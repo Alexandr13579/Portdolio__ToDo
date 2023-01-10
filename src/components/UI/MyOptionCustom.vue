@@ -9,7 +9,7 @@
 
 <script>
 export default {
-    name: 'MyOptionCustom',
+    name: 'my-OptionCustom',
     props: {
         option: String,
         required: true
@@ -27,12 +27,10 @@ export default {
         transition: transform ease .3s;
         padding: 5px;
         width: 100%;
-
+        
 
         &:hover {
-            transform: scale3d(1, 1.1, 1);
-
-            
+            transform: scale3d(1, 1.1, 1);            
         }
     }
 </style>

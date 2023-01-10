@@ -1,11 +1,12 @@
 <template>
     <div class="searchTop" >
         <div class="searchTop__filter">
-            <MySelectCustom 
+            <my-SelectCustom 
             :options="filter.category" 
+            id="category"
             @optionSelected="optionSelectedCategory"
             />
-            <MySelectCustom 
+            <my-SelectCustom 
             :options="filter.country"  
             @optionSelected="optionSelectedCountry"
             />
@@ -48,6 +49,8 @@ export default {
     }
 }
 
-
+#category{
+    min-width: 240px;
+}
 
 </style>

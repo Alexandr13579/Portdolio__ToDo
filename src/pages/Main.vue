@@ -9,8 +9,6 @@ export default {
 </script>
 <style lang="scss" scoped>
     main{
-        background-color: #CDCAC5;
-        color: #6E7F91;
         padding: 20px;
     }
 </style>

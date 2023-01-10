@@ -21,6 +21,7 @@
   height: 100%;
   min-height: 100vh;
   background-color: #1A1A1A;
+  color: rgba(255, 255, 255, 0.9);
   font-family:Arial, Helvetica, sans-serif;
   box-sizing: border-box;
   display: flex;

@@ -1,25 +1,39 @@
 <template>
     <div class="searchExat">
-        <div class="searchExat__block">
+        <div class="searchExat__search">
             <input v-model="keyWord" class="searchExat__input" type="text" placeholder="Enter keyword" />
-            <my-btnSearhPush @click="searchNews" type="submit" class="searchExat__btn">
+            <my-btnSearhPush @click="searchExatNews" type="submit" class="searchExat__btn">
                 <span class="searchExat__btn-text">Search</span> 
                 <span class="material-symbols-outlined searchExat__btn-img">search</span>
             </my-btnSearhPush>
+        </div>
+        <div class="searchExat__filter">
+            <my-SelectCustom :options="filter.first" @optionSelected="optionSelectedCategory"/>
         </div>
     </div>
 </template>
 
 <script>
 export default {
+    props: {
+        filter: {
+            type: Object,
+            required: true
+        }
+    },
     data() {
         return {
-            keyWord: ''
+            keyWord: '',
+            first: this.filter.first[0],
         }
     },
     methods: {
-        searchNews() {
-            this.$emit('keyWord', this.keyWord)
+        optionSelectedCategory(option) {
+            this.first = option;
+        },
+        searchExatNews() {
+            this.$emit('searchExatNews', this.keyWord, this.first)
+            console.log( this.keyWord, this.first)
         }
     }
 }
@@ -28,22 +42,16 @@ export default {
 <style lang="scss" scoped>
 .searchExat {
 
-    &__title {
-        font-size: 24px;
-        font-weight: 500;
-        margin-bottom: 10px;
-    }
-
-    &__block{
+    &__search {
         display: flex;
-        align-items: center;
-        min-height: 56px;
+        margin-bottom: 10px;
     }
     
     &__input {
         font-size: 20px;
         padding: 16px;
-        background-color: #CFD1E0;
+        background-color: #333333;
+        color: inherit;
         border-radius: 12px 0px 0px 12px;
         min-height: 56px;
 
@@ -55,6 +63,10 @@ export default {
     }
     &__btn-text {
         margin-right: 5px;
+    }
+
+    &__filter {
+        display: flex;
     }
 }
 </style>
